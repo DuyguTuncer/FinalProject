@@ -1,11 +1,12 @@
 import { Component } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 export class Registration extends Component {
     constructor() {
         super();
         this.state = {
-            error: true,
+            error: false,
         };
         this.handleChange = this.handleChange.bind(this);
     }
@@ -34,18 +35,24 @@ export class Registration extends Component {
                     // that sth is trigger a reload, so that our start.js runs
                     // one more time and asks the server agin whether or not
                     // the user has the correct cookie :)
+                    location.reload();
                 } else {
                     // we should render an error!
                     // we need to update our component's state to conditionally
                     // make an error appear
+                    this.setState({
+                        error: "Please make sure to complete all input filelds!",
+                    });
                 }
             })
-            .catch(
-                (err) =>
-                    console.log("something went wrong in POST /register", err)
+            .catch((err) => {
+                console.log("something went wrong in POST /register", err);
                 // we need to update our component's state to conditionally
                 // make an error appear
-            );
+                this.setState({
+                    error: "Please make sure to complete all input filelds!",
+                });
+            });
     }
     componentDidMount() {
         console.log("Register just mounted");
@@ -55,7 +62,9 @@ export class Registration extends Component {
         return (
             <section>
                 {this.state.error && (
-                    <h2 style={{ color: "red" }}>{this.state.error} error!!</h2>
+                    <h2 style={{ color: "red" }}>
+                        {this.state.error} Error!!!!!!!
+                    </h2>
                 )}
                 <form>
                     <input
@@ -69,7 +78,7 @@ export class Registration extends Component {
                         onChange={this.handleChange}
                     />
                     <input
-                        name="email"
+                        name="emailAddress"
                         placeholder="Email"
                         onChange={this.handleChange}
                     />
@@ -82,7 +91,15 @@ export class Registration extends Component {
                     <button onClick={(e) => this.handleSubmit(e)}>
                         Register
                     </button>
+                    <div>
+                        Have you already registered?
+                        <p>
+                            Click <Link to="/login">here</Link> to log in!
+                        </p>
+                    </div>
                 </form>
+
+                {this.state.error && <h2>{this.state.error}</h2>}
             </section>
         );
     }
