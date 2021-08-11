@@ -30,6 +30,8 @@ export class Login extends Component {
             .then((resp) => {
                 if (resp.data.success) {
                     location.reload();
+                    // console.log(" location.reload();",   location.reload());
+                    console.log("login is successfull");
                 } else {
                     this.setState({
                         error: true,

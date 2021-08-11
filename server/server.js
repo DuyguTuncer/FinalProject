@@ -76,7 +76,7 @@ app.post("/login", (req, res) => {
     db.findEmail(req.body.emailAddress)
         .then(({ rows }) => {
             console.log("rows:", rows);
-            rows[0].hashed_password;
+            // rows[0].hashed_password;
             bcrypt
                 .compare(req.body.password, rows[0].hashed_password)
                 .then((check) => {
@@ -84,6 +84,8 @@ app.post("/login", (req, res) => {
                     if (!check) {
                         res.json({ success: false });
                     } else {
+                        req.session.userId = rows[0].id;
+                        console.log("req.session.userId", rows[0].id);
                         res.json({ success: true });
                     }
                 })
