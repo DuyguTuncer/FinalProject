@@ -1,34 +1,48 @@
 import { Component } from "react";
+import axios from "axios";
 
-export default class BioEditor extends Component {
-    constructor(props) {
-        super(props);
+export default class BioEditior extends Component {
+    constructor() {
+        super();
         this.state = {
-            editorIsVisible: false,
+            editorVisible: false,
             draftBio: "",
         };
         this.textareaToggle = this.textareaToggle.bind(this);
+        this.handleChange = this.handleChange.bind(this);
+    }
+
+    updateBio() {
+        //   Make a post request after dealling with server
     }
 
     textareaToggle() {
-        this.setState({
-            editorIsVisible: !this.state.editorIsVisible,
-        });
+        this.setState({ editorVisible: !this.state.editorVisible });
     }
 
-    functionToUpdateDatabaseWithNewBio() {
-        // Here you will want to make a post request to the server.
-        // You will update the value of the bio in the DB with the new one.
-        // Once successful, you can call a function passed down from App
-        // to update the value in App
+    handleChange({ target }) {
+        console.log("HANDLE CHANGE IN BIO.js", target);
+        console.log("[target.name]:target.value}", {
+            [target.name]: target.value,
+        });
+        this.setState({ [target.name]: target.value });
+        console.log("this state after target.value:", this.state);
     }
 
     render() {
         return (
             <div>
-                BIO EDITOR
-                {this.state.editorIsVisible && <textarea />}
-                <button onClick={this.textareaToggle}>Click Me!</button>
+                <p>{this.draftBio}</p>
+                {this.state.editorVisible && (
+                    <div>
+                        <textarea name="bio" onChange={this.handleChange} />
+                        {/* Make a post request after dealling with server */}
+                        <button onClick={this.updateBio}>Submit</button>
+                    </div>
+                )}
+                {!this.state.editorVisible && (
+                    <button onClick={this.textareaToggle}>Update Bio</button>
+                )}
             </div>
         );
     }
