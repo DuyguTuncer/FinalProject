@@ -76,11 +76,11 @@ export class Login extends Component {
                         Log in
                     </button>
                     <div>
-                        Did you forget password?
+                        Did you forget your password?
                         <p>
                             {/* Reset password{" "} */}
                             <Link to="/password-reset">
-                                reset your password here!
+                                Reset your password here!
                             </Link>
                         </p>
                     </div>

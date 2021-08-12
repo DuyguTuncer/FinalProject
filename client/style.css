@@ -1,3 +1,17 @@
 body {
     background-color: ghostwhite;
 }
+
+.profilePic {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    float: right;
+}
+
+.header-pic {
+    width: 300px;
+    height:300px;
+    float: right
+
+}

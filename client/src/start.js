@@ -2,6 +2,7 @@ import ReactDOM from "react-dom";
 import Welcome from "./welcome";
 import axios from "axios";
 import Monkeylogo from "./logo";
+import App from "./app";
 
 // ReactDOM.render(<HelloWorld />, document.querySelector("main"));
 
@@ -17,6 +18,6 @@ axios.get("/user/id.json").then(function ({ data }) {
     } else {
         // user registered/is logged in therefore the user
         // should NOT see Welcome -> Registration, BUT instead see our logo
-        ReactDOM.render(<Monkeylogo />, document.querySelector("main"));
+        ReactDOM.render(<App />, document.querySelector("main"));
     }
 });

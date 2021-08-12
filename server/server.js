@@ -5,6 +5,27 @@ const path = require("path");
 const bcrypt = require("./bcrypt");
 const db = require("./db");
 const cookieSession = require("cookie-session");
+const s3 = require("./ses");
+const multer = require("multer");
+const uidSafe = require("uid-safe");
+
+const diskStorage = multer.diskStorage({
+    destination: function (req, file, callback) {
+        callback(null, __dirname + "/uploads");
+    },
+    filename: function (req, file, callback) {
+        uidSafe(24).then(function (uid) {
+            callback(null, uid + path.extname(file.originalname));
+        });
+    },
+});
+
+const uploader = multer({
+    storage: diskStorage,
+    limits: {
+        fileSize: 4097152,
+    },
+});
 
 app.use(compression());
 
@@ -95,6 +116,61 @@ app.post("/login", (req, res) => {
         })
         .catch((err) => console.log("Error when finding email", err));
 });
+
+// app.get("/user", (req, res) => {
+//     console.log("userId is:", req.session.userId);
+//     db.getUser(req.session.userId)
+//         .then((result) => {
+//             console.log("result for app.js get user", result.rows[0]);
+//             res.json({
+//                 success: true,
+//                 userInfo: result.rows[0],
+//             });
+//         })
+//         .catch((err) => {
+//             console.log("eroro in user route:", err);
+//             res.json({
+//                 success: false,
+//             });
+//         });
+// });
+
+// app.post("/upload", uploader.single("file"), s3.upload, (req, res) => {
+//     // console.log("req.body", req.body);
+//     // console.log("req.file", req.file);
+
+//     const fullUrl =
+//         "https://s3.amazonaws.com/duyguimageboard/" + req.file.filename;
+//     console.log("fullUrl:", fullUrl);
+
+//     db.uploadImage(
+//         fullUrl,
+//         req.body.username || null,
+//         req.body.title || null,
+//         req.body.description || null
+//     )
+//         .then(({ rows }) => {
+//             console.log("results", rows);
+//             res.json({
+//                 id: rows[0].id,
+//                 title: req.body.title,
+//                 description: req.body.description,
+//                 username: req.body.username,
+//                 url: rows[0].url,
+//                 created_at: rows[0].created_at,
+//                 // ---------------------------
+//             });
+//         })
+//         .catch((err) => console.log("Error in uploading image", err));
+// });
+
+
+app.get("/logout", (req, res) => {
+    res.json({
+        userId: null,
+    });
+});
+
 
 app.get("*", function (req, res) {
     res.sendFile(path.join(__dirname, "..", "client", "index.html"));

@@ -19,3 +19,10 @@ module.exports.findEmail = (emailAddress) => {
         [emailAddress]
     );
 };
+
+module.exports.uploadImage = (url, id) => {
+    return db.query(
+        `UPDATE users SET imageurl = $1 WHERE id = ${id} RETURNING imageurl`,
+        [url]
+    );
+};

@@ -1,9 +1,15 @@
 import { Component } from "react";
+import axios from "axios";
 
 export default class Uploader extends Component {
     constructor(props) {
         super(props);
-        this.state = {};
+        this.state = {
+            file: null,
+        };
+        this.userFileSelection = this.userFileSelection.bind(this);
+        this.uploadImage = this.uploadImage.bind(this);
+        this.closeUploader = this.closeUploader.bind(this);
 
         console.log("props in Uploader: ", props);
     }
@@ -12,25 +18,45 @@ export default class Uploader extends Component {
         console.log("Uploader mounted!!!");
     }
 
-    methodInUploader() {
-        // this is where you'll be doing formdata to send your image to the server!!
-        // look back at ib for a nice little refresher.
-        // once the img has been successfully added to the db and you get the image back here, you'll want to send the image UP TO APP - you can do so by calling the method in App
-        // this method in App was passed down to uploader!
-        this.props.methodInApp("whoaaaaaa");
-        // also make sure that you hide the uploader!
+    uploadImage() {
+        var file = this.file;
+        var formData = new FormData();
+        formData.append("file", file);
+        axios
+            .post("/upload", formData)
+            .then(({ data }) => {
+                console.log("axios upload email:", data.imgUrl);
+                this.props.methodInApp(data.imgUrl);
+            })
+            .catch((err) => {
+                console.log("", err);
+            });
+    }
+
+    closeUploader() {
+        this.props.toggleModal();
+    }
+
+    userFileSelection(e) {
+        this.file = e.target.files[0];
     }
 
     render() {
         return (
-            <div>
-                <h2 className="uploader-text">
-                    This is my uploader component!
-                </h2>
-
-                <h2 onClick={() => this.methodInUploader()}>
-                    Click here to run method in uploader!
-                </h2>
+            <div className="imageUploader">
+                <p className="XButton" onClick={this.closeUploader}>
+                    X
+                </p>
+                <h1>Change Your Profile Picture</h1>
+                <h4>Click upload button to change your profile picture</h4>
+                <input
+                    type="file"
+                    onChange={this.userFileSelection}
+                    className="fileInput"
+                />
+                <button className="uploadButton" onClick={this.uploadImage}>
+                    Upload
+                </button>
             </div>
         );
     }

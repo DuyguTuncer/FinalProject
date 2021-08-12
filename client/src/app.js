@@ -1,6 +1,7 @@
 import { Component } from "react";
+import axios from "axios";
 import Logo from "./logo";
-import Presentational from "./presentational";
+import ProfilePic from "./profilepic";
 import Uploader from "./uploader";
 
 export default class App extends Component {
@@ -11,61 +12,76 @@ export default class App extends Component {
             first: "",
             last: "",
             imageUrl: "",
-            uploaderIsVisible: false,
+            imageUploaderIsVisible: false,
         };
         this.componentDidMount = this.componentDidMount.bind(this);
-        this.toggleUploader = this.toggleUploader.bind(this);
+        this.toggleModal = this.toggleModal.bind(this);
         this.methodInApp = this.methodInApp.bind(this);
-        this.methodInBio = this.methodInBio.bind(this);
     }
 
-    // this function runs the second the component is rendered!
     componentDidMount() {
         console.log("App mounted");
-        // here is where we want to make an axios request to 'get' info about the logged in user
-        // e.g. first name, last name, imageUrl/profilepic url
-        // the axios route '/user' is a good path for it.
-        // when we have the info from the server, add it to the state of the component using setState
+        axios
+            .get("/user")
+            .then(({ data }) => {
+                if (data.success) {
+                    console.log("data.userInfo", data.userInfo);
+                    let { firstname, lastname, imageurl } = data.userInfo;
+                    this.setState({
+                        first: firstname,
+                        last: lastname,
+                        imageUrl: imageurl,
+                    });
+                } else {
+                    this.setState({ error: true });
+                }
+            })
+            .catch((err) => {
+                console.log("error in axios get request for /user ", err);
+                this.setState({ error: true });
+            });
     }
 
     toggleModal() {
-        // console.log("toggleModal in app is running!!!");
         this.setState({
-            uploaderIsVisible: !this.state.uploaderIsVisible,
+            imageUploaderIsVisible: !this.state.imageUploaderIsVisible,
         });
     }
 
-    // this fn is responsible for receiving your imageUrl from uploader
-    // and then storing it to its state
     methodInApp(arg) {
-        console.log(
-            "methodInApp is running! Argument passed to it is --> ",
-            arg
-        );
-        this.setState.bio = arg.bio;
+        console.log("methodInApp is running! Argument passed is:", arg);
+        this.state.imageUrl = arg;
+        // this.toggleModal();
         // make sure you set the imageUrl you received from uploader in state!
     }
 
     render() {
         return (
             <div>
-                <Logo />
-                <h1>Hello from App!</h1>
-
-                <Presentational
-                    first={this.state.first}
-                    last={this.state.last}
-                    age={this.state.age}
-                    imageUrl={this.state.imageUrl}
-                />
-
-                <h2 onClick={() => this.toggleModal()}>
-                    Click here to toggle uploader visibility
-                </h2>
-
-                {this.state.uploaderIsVisible && (
-                    <Uploader methodInApp={this.methodInApp} />
-                )}
+                <div className="errorMessage">
+                    {this.state.error && (
+                        <h1 style={{ color: "red" }}>
+                            Something went wrong with the provided information
+                        </h1>
+                    )}
+                    <Logo />
+                    <div onClick={this.toggleModal}>
+                        <ProfilePic
+                            first={this.state.first}
+                            last={this.state.last}
+                            imageUrl={this.state.imageUrl}
+                        />
+                    </div>
+                </div>
+                <div className="up">
+                    {this.state.imageUploaderIsVisible && (
+                        <Uploader
+                            className="uploader"
+                            methodInApp={this.methodInApp}
+                            toggleModal={this.toggleModal}
+                        />
+                    )}
+                </div>
             </div>
         );
     }
