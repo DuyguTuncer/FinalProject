@@ -14,9 +14,10 @@ export default class OthersProfile extends Component {
         };
         console.log("props: ", props);
     }
-
+    //try asnc await here
     componentDidMount() {
         console.log("othersProfile mounted");
+       
     }
 
     render() {

@@ -1,3 +1,3 @@
 export default function Monkeylogo() {
-    return <img src="/images/logo.png" alt="monkeys" />;
+    return <img className="logoImage" src="/images/logo.png" alt="monkeys" />;
 }

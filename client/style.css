@@ -2,9 +2,21 @@ body {
     background-color: ghostwhite;
 }
 
+main{
+    display: 
+}
+
 .profilePic {
-    width: 100px;
-    height: 100px;
+    width: 150px;
+    height:150px;
     object-fit: cover;
     /* float: right; */
 }
+
+.logoImage{
+    width:120px;
+    height:120px
+}
+ .errorMessage {
+     font-size: 10px;
+ }

@@ -34,3 +34,10 @@ module.exports.updateBio = (id, bio) => {
     );
 };
 
+module.exports.getUser = (id) => {
+    return db.query(
+        `SELECT id, first, last, email_addres, imageurl, bio FROM socialnetwork WHERE id=($1)}`,
+        [id]
+    );
+};
+

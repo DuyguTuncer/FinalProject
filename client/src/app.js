@@ -68,11 +68,15 @@ export default class App extends Component {
     }
 
     render() {
-        return (
-            <div>
-                <div className="errorMessage">
-                    {this.state.error && (
-                        <h1 style={{ color: "red" }}>
+        return(
+                   <BrowserRouter>
+                    <div>
+                        <Route exact path="/"
+                            render={() => (
+                                 <div>
+                <div className="main">
+                     {this.state.error && (
+                        <h1 >
                             Something went wrong with the provided information
                         </h1>
                     )}
@@ -85,7 +89,7 @@ export default class App extends Component {
                         />
                     </div>
                 </div>
-                <div className="up">
+                <div className="uploader">
                     {this.state.imageUploaderIsVisible && (
                         <Uploader
                             className="uploader"
@@ -103,7 +107,62 @@ export default class App extends Component {
                         updateBioInApp={this.updateBioInApp}
                     />
                 </div>
-            </div>
-        );
+                </div>
+                            )}
+                        />
+                       <Route
+                            path="/user/:id"
+                            render={props => (
+                                <OtherProfile
+                                key={props.match.url}
+                                match={props.match}
+                                history={props.history}
+                            />
+                        )}
+                    />
+                </div>
+                </BrowserRouter>
+        )
     }
-}
+
+
+//     render() {
+//         return (
+//             <div>
+//                 <div className="errorMessage">
+//                     {this.state.error && (
+//                         <h1 style={{ color: "red" }}>
+//                             Something went wrong with the provided information
+//                         </h1>
+//                     )}
+//                     <Logo />
+//                     <div onClick={this.toggleModal}>
+//                         <ProfilePic
+//                             first={this.state.first}
+//                             last={this.state.last}
+//                             imageUrl={this.state.imageUrl}
+//                         />
+//                     </div>
+//                 </div>
+//                 <div className="uploader">
+//                     {this.state.imageUploaderIsVisible && (
+//                         <Uploader
+//                             className="uploader"
+//                             methodInApp={this.methodInApp}
+//                             toggleModal={this.toggleModal}
+//                         />
+//                     )}
+//                 </div>
+//                 <div className="profile">
+//                     <Profile
+//                         first={this.state.first}
+//                         last={this.state.last}
+//                         imageUrl={this.state.imageUrl}
+//                         bio={this.state.bio}
+//                         updateBioInApp={this.updateBioInApp}
+//                     />
+//                 </div>
+//             </div>
+//         );
+//     }
+// }

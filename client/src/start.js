@@ -1,7 +1,6 @@
 import ReactDOM from "react-dom";
 import Welcome from "./welcome";
 import axios from "axios";
-import Monkeylogo from "./logo";
 import App from "./app";
 
 // ReactDOM.render(<HelloWorld />, document.querySelector("main"));
