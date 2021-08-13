@@ -51,7 +51,7 @@ export default class App extends Component {
 
     methodInApp(arg) {
         console.log("methodInApp is running! Argument passed is:", arg);
-        this.state.imageUrl = arg;
+        this.setState({imageUrl: arg});
         // this.toggleModal();
         // make sure you set the imageUrl you received from uploader in state!
     }

@@ -5,7 +5,7 @@ const path = require("path");
 const bcrypt = require("./bcrypt");
 const db = require("./db");
 const cookieSession = require("cookie-session");
-const s3 = require("./ses");
+const s3 = require("./s3");
 const multer = require("multer");
 const uidSafe = require("uid-safe");
 
@@ -135,42 +135,62 @@ app.post("/login", (req, res) => {
 //         });
 // });
 
-// app.post("/upload", uploader.single("file"), s3.upload, (req, res) => {
-//     // console.log("req.body", req.body);
-//     // console.log("req.file", req.file);
+app.post("/upload", uploader.single("file"), s3.upload, (req, res) => {
+    // console.log("req.body", req.body);
+    // console.log("req.file", req.file);
 
-//     const fullUrl =
-//         "https://s3.amazonaws.com/duyguimageboard/" + req.file.filename;
-//     console.log("fullUrl:", fullUrl);
+    const fullUrl =
+        "https://s3.amazonaws.com/duygusocialnetwork/" + req.file.filename;
+    console.log("fullUrl:", fullUrl);
 
-//     db.uploadImage(
-//         fullUrl,
-//         req.body.username || null,
-//         req.body.title || null,
-//         req.body.description || null
-//     )
-//         .then(({ rows }) => {
-//             console.log("results", rows);
-//             res.json({
-//                 id: rows[0].id,
-//                 title: req.body.title,
-//                 description: req.body.description,
-//                 username: req.body.username,
-//                 url: rows[0].url,
-//                 created_at: rows[0].created_at,
-//                 // ---------------------------
-//             });
-//         })
-//         .catch((err) => console.log("Error in uploading image", err));
-// });
+    if (req.file) {
+        db.uploadImage(fullUrl, req.session.userId)
+            .then(({ rows }) => {
+                console.log("results", rows);
+                res.json({
+                    success: true,
+                    imgUrl: fullUrl,
+                });
+            })
+            .catch((err) => console.log("Error when uploading image", err));
+    } else {
+        res.json({
+            success: false,
+        });
+    }
+});
 
+app.post("/updatebio", async (req, res) => {
+    // If nothing went wrong the file is already in the uploads directory
+    // console.log("req.file: ", req.file);
+    console.log("I am in updatebio: ", req.body);
+
+    db.updateBio(req.session.userId, req.body.draftBio).then(({ rows }) => {
+        console.log("results.rows", rows);
+        res.json({
+            success: true,
+       
+        });
+    });
+
+
+    // try {
+    //     const { rows: bio } = await db.updateBio(
+    //         req.session.userId,
+    //         req.body.draftBio
+    //     );
+
+    //     res.json(bio);
+    // } catch (error) {
+    //     console.log;
+    // }
+});
 
 app.get("/logout", (req, res) => {
     res.json({
         userId: null,
     });
 });
-
 
 app.get("*", function (req, res) {
     res.sendFile(path.join(__dirname, "..", "client", "index.html"));

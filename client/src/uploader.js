@@ -24,12 +24,13 @@ export default class Uploader extends Component {
         formData.append("file", file);
         axios
             .post("/upload", formData)
-            .then(({ data }) => {
-                console.log("axios upload email:", data.imgUrl);
-                this.props.methodInApp(data.imgUrl);
+            .then((response) => {
+                console.log("response:", response);
+                console.log("axios upload email:", response.data.imgUrl);
+                this.props.methodInApp(response.data.imgUrl);
             })
             .catch((err) => {
-                console.log("", err);
+                console.log("error in upload image axios", err);
             });
     }
 

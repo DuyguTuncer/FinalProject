@@ -22,7 +22,14 @@ module.exports.findEmail = (emailAddress) => {
 
 module.exports.uploadImage = (url, id) => {
     return db.query(
-        `UPDATE users SET imageurl = $1 WHERE id = ${id} RETURNING imageurl`,
-        [url]
+        `UPDATE socialnetwork SET imageurl = $1 WHERE id = $2 RETURNING imageurl`,
+        [url, id]
+    );
+};
+
+module.exports.updateBio = (id, bio) => {
+    return db.query(
+        `UPDATE socialnetwork SET bio=($2) WHERE id=($1) RETURNING bio`,
+        [id, bio]
     );
 };
