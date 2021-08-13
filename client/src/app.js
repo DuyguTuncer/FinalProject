@@ -4,6 +4,7 @@ import Logo from "./logo";
 import ProfilePic from "./profilepic";
 import Uploader from "./uploader";
 import Profile from "./profile";
+import OthersProfile from "./othersprofile";
 
 export default class App extends Component {
     constructor() {

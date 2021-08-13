@@ -33,3 +33,4 @@ module.exports.updateBio = (id, bio) => {
         [id, bio]
     );
 };
+

@@ -172,23 +172,11 @@ app.post("/updatebio", async (req, res) => {
             bio: rows[0].bio,
         });
     });
-
-    // try {
-    //     const { rows: bio } = await db.updateBio(
-    //         req.session.userId,
-    //         req.body.draftBio
-    //     );
-
-    //     res.json(bio);
-    // } catch (error) {
-    //     console.log;
-    // }
 });
 
-app.get("/logout", (req, res) => {
-    res.json({
-        userId: null,
-    });
+app.get("/logout", function (req, res) {
+    (req.session.userId = null), (req.session.first = null);
+    res.redirect("/");
 });
 
 app.get("*", function (req, res) {
