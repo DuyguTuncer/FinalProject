@@ -2,42 +2,60 @@ import { Component } from "react";
 import axios from "axios";
 
 export default class BioEditior extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             editorVisible: false,
             draftBio: "",
         };
         this.textareaToggle = this.textareaToggle.bind(this);
         this.handleChange = this.handleChange.bind(this);
+        this.updateBio = this.updateBio.bind(this);
+        console.log("logging props in bioeditor", props);
     }
 
     updateBio() {
-        //   Make a post request after dealling with server
+        console.log("axios post updateBio: ", this.state);
+        axios
+            .post("/updatebio", this.state)
+            .then(({ data }) => {
+                console.log(
+                    "bioeditor.js in post request /updatebio data:",
+                    data.bio
+                );
+
+                // do we need to do location.reload?
+                this.props.updateBioInApp(data.bio); // look at here
+                this.textareaToggle();
+            })
+            .catch((err) => {
+                console.log(
+                    "error in bioeditor.js in post request /updatebio:",
+                    err
+                );
+            });
     }
 
     textareaToggle() {
-        this.setState({ editorVisible: !this.state.editorVisible });
+        this.setState({
+            editorVisible: !this.state.editorVisible,
+            draftBio: this.props.bio,
+        });
     }
 
     handleChange({ target }) {
-        console.log("HANDLE CHANGE IN BIO.js", target);
-        console.log("[target.name]:target.value}", {
-            [target.name]: target.value,
-        });
-        this.setState({ [target.name]: target.value });
-        console.log("this state after target.value:", this.state);
+        this.setState({ draftBio: target.value });
     }
 
     render() {
         return (
             <div>
-                <p>{this.draftBio}</p>
+                <p>{this.props.bio}</p>
                 {this.state.editorVisible && (
                     <div>
                         <textarea name="bio" onChange={this.handleChange} />
                         {/* Make a post request after dealling with server */}
-                        <button onClick={this.updateBio}>Submit</button>
+                        <button onClick={this.updateBio}>Save</button>
                     </div>
                 )}
                 {!this.state.editorVisible && (

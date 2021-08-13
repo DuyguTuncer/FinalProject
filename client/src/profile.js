@@ -1,7 +1,8 @@
 import BioEditor from "./bioeditor";
 import ProfilePic from "./profilepic";
 
-export default function Profile({ first, last, imageUrl }) {
+export default function Profile({ first, last, imageUrl, bio, updateBioInApp }) {
+    console.log("bio info in profile.js", bio);
     return (
         <div>
             <h1>USER PROFILE COMPONENT</h1>
@@ -9,8 +10,8 @@ export default function Profile({ first, last, imageUrl }) {
             <h3>
                 Hello my name is {first} {last}
             </h3>
-            <ProfilePic imageUrl="https://arugulafiles.typepad.com/.a/6a00e55091ba2f8833017c33715b59970b-600wi" />
-            <BioEditor />
+            <ProfilePic imageUrl={imageUrl} />
+            <BioEditor bio={bio} updateBioInApp={updateBioInApp} />
         </div>
     );
 }

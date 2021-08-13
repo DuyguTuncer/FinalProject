@@ -13,11 +13,13 @@ export default class App extends Component {
             first: "",
             last: "",
             imageUrl: "",
+            bio: "",
             imageUploaderIsVisible: false,
         };
         this.componentDidMount = this.componentDidMount.bind(this);
         this.toggleModal = this.toggleModal.bind(this);
         this.methodInApp = this.methodInApp.bind(this);
+        this.updateBioInApp = this.updateBioInApp.bind(this);
     }
 
     componentDidMount() {
@@ -27,11 +29,12 @@ export default class App extends Component {
             .then(({ data }) => {
                 if (data.success) {
                     console.log("data.userInfo", data.userInfo);
-                    let { firstname, lastname, imageurl } = data.userInfo;
+                    let { firstname, lastname, imageurl, bio } = data.userInfo;
                     this.setState({
                         first: firstname,
                         last: lastname,
                         imageUrl: imageurl,
+                        bio: bio,
                     });
                 } else {
                     this.setState({ error: true });
@@ -51,9 +54,16 @@ export default class App extends Component {
 
     methodInApp(arg) {
         console.log("methodInApp is running! Argument passed is:", arg);
-        this.setState({imageUrl: arg});
+        this.setState({ imageUrl: arg });
         // this.toggleModal();
         // make sure you set the imageUrl you received from uploader in state!
+    }
+
+    updateBioInApp(updatedBio) {
+        console.log("updatedBio in App: ", updatedBio);
+        this.setState({
+            bio: updatedBio,
+        });
     }
 
     render() {
@@ -88,6 +98,8 @@ export default class App extends Component {
                         first={this.state.first}
                         last={this.state.last}
                         imageUrl={this.state.imageUrl}
+                        bio={this.state.bio}
+                        updateBioInApp={this.updateBioInApp}
                     />
                 </div>
             </div>

@@ -169,10 +169,9 @@ app.post("/updatebio", async (req, res) => {
         console.log("results.rows", rows);
         res.json({
             success: true,
-       
+            bio: rows[0].bio,
         });
     });
-
 
     // try {
     //     const { rows: bio } = await db.updateBio(
