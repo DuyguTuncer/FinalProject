@@ -195,6 +195,18 @@ app.get("/api/user/:id", (req, res) => {
         .catch((err) => console.log("Error in /api/user/:id", err));
 });
 
+app.get("/api/findpeople", async (req, res) => {
+    db.findPeople()
+        .then(({ rows }) => {
+            console.log("rows in /api/findpeople: ", rows);
+            res.json(
+                // success: true,
+                rows
+            );
+        })
+        .catch((err) => console.log("Error iin /api/findpeople", err));
+});
+
 app.get("/logout", function (req, res) {
     (req.session.userId = null), (req.session.first = null);
     res.redirect("/");

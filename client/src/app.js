@@ -6,6 +6,8 @@ import Uploader from "./uploader";
 import Profile from "./profile";
 import OthersProfile from "./othersprofile";
 import { BrowserRouter, Route } from "react-router-dom";
+import FindPeople from "./findpeople";
+import { Link } from "react-router-dom";
 
 export default class App extends Component {
     constructor() {
@@ -71,17 +73,19 @@ export default class App extends Component {
     render() {
         return (
             <BrowserRouter>
-                <div>
-                    <div className="main">
+                <div className="mainContainer">
+                    <div className="header">
                         {this.state.error && (
                             <h1>
                                 Something went wrong with the provided
                                 information
                             </h1>
                         )}
-                        <Logo />
+
+                        <Logo className="logo" />
                         <div onClick={this.toggleModal}>
                             <ProfilePic
+                                className="profilePic"
                                 first={this.state.first}
                                 last={this.state.last}
                                 imageUrl={this.state.imageUrl}
@@ -123,6 +127,11 @@ export default class App extends Component {
                             />
                         )}
                     />
+                    <Route
+                        path="/findpeople"
+                        render={(props) => <FindPeople />}
+                    />
+                    <Link to="/findpeople">Find other people</Link>
                 </div>
             </BrowserRouter>
         );

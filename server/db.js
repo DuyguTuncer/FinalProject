@@ -42,3 +42,7 @@ module.exports.getUser = (id) => {
     );
 };
 
+module.exports.findPeople = () => {
+    return db.query(`SELECT first, last, imageurl FROM socialnetwork ORDER BY id DESC`);
+};
+

@@ -1,17 +1,34 @@
+* {
+    margin: 0;
+    font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+    box-sizing: border-box;
+}
+
 body {
     background-color: ghostwhite;
 }
 
-main{
+/* main{
     display: 
+} */
+
+.header {
+    display: flex;
 }
 
 .profilePic {
     width: 150px;
     height:150px;
     object-fit: cover;
-    /* float: right; */
+    /* float:right; */
+    
 }
+
+/* .profilePicBig {
+    width: 200px;
+    height:200px;
+    object-fit: cover;
+} */
 
 .logoImage{
     width:120px;
@@ -19,4 +36,8 @@ main{
 }
  .errorMessage {
      font-size: 10px;
+ }
+
+ .mainContainer {
+
  }

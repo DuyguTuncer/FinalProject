@@ -36,7 +36,7 @@ export default class OthersProfile extends Component {
             <div className="othersProfile">
                 <img
                     className="profilePic"
-                    src={this.state.imageUrl}
+                    src={this.state.imageurl}
                     alt={`${this.state.first} ${this.state.last}`}
                 />
                 <div>
