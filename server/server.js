@@ -174,6 +174,20 @@ app.post("/updatebio", async (req, res) => {
     });
 });
 
+app.get("/api/user/:id", (req, res) => {
+    console.log("req.query in /api/user/:id", req.query);
+    console.log("req.params in /api/user/:id:", req.params);
+    db.getUser(req.params.id)
+        .then(({ rows }) => {
+            console.log("result.rows[0] in user/:id/: ", rows[0]);
+            res.json(
+                // success: true,
+                rows[0]
+            );
+        })
+        .catch((err) => console.log("Error in /api/user/:id", err));
+});
+
 app.get("/logout", function (req, res) {
     (req.session.userId = null), (req.session.first = null);
     res.redirect("/");

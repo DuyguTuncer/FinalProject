@@ -35,8 +35,9 @@ module.exports.updateBio = (id, bio) => {
 };
 
 module.exports.getUser = (id) => {
+    console.log("I am in db getUser");
     return db.query(
-        `SELECT id, first, last, email_addres, imageurl, bio FROM socialnetwork WHERE id=($1)}`,
+        `SELECT id, first, last, imageurl, bio FROM socialnetwork WHERE id=($1)`,
         [id]
     );
 };

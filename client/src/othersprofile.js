@@ -18,6 +18,16 @@ export default class OthersProfile extends Component {
     //try asnc await here
     componentDidMount() {
         console.log("othersProfile mounted");
+        let othersId = this.props.match.params.id;
+        console.log("this.props.match.params.id: ", othersId);
+
+        axios
+            .get(`/api/user/${othersId}`)
+            .then(({ data }) => {
+                console.log("data in user: ", data);
+                this.setState(data);
+            })
+            .catch((err) => console.log("err in /user: ", err));
        
     }
 
