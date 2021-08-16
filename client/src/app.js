@@ -5,6 +5,7 @@ import ProfilePic from "./profilepic";
 import Uploader from "./uploader";
 import Profile from "./profile";
 import OthersProfile from "./othersprofile";
+import { BrowserRouter, Route } from "react-router-dom";
 
 export default class App extends Component {
     constructor() {
@@ -69,59 +70,61 @@ export default class App extends Component {
 
     render() {
         return(
-                   <BrowserRouter>
+          
+                <BrowserRouter>
                     <div>
-                        <Route exact path="/"
-                            render={() => (
-                                 <div>
-                <div className="main">
-                     {this.state.error && (
-                        <h1 >
-                            Something went wrong with the provided information
-                        </h1>
-                    )}
-                    <Logo />
-                    <div onClick={this.toggleModal}>
-                        <ProfilePic
-                            first={this.state.first}
-                            last={this.state.last}
-                            imageUrl={this.state.imageUrl}
-                        />
-                    </div>
-                </div>
-                <div className="uploader">
-                    {this.state.imageUploaderIsVisible && (
-                        <Uploader
-                            className="uploader"
-                            methodInApp={this.methodInApp}
-                            toggleModal={this.toggleModal}
-                        />
-                    )}
-                </div>
-                <div className="profile">
-                    <Profile
-                        first={this.state.first}
-                        last={this.state.last}
-                        imageUrl={this.state.imageUrl}
-                        bio={this.state.bio}
-                        updateBioInApp={this.updateBioInApp}
-                    />
-                </div>
-                </div>
+                        <div className="main">
+                            {this.state.error && (
+                                <h1 >
+                                    Something went wrong with the provided information
+                                </h1>
                             )}
-                        />
-                       <Route
-                            path="/user/:id"
-                            render={props => (
-                                <OtherProfile
-                                key={props.match.url}
-                                match={props.match}
-                                history={props.history}
-                            />
-                        )}
-                    />
+                            <Logo />
+                            <div onClick={this.toggleModal}>
+                            <ProfilePic
+                                    first={this.state.first}
+                                    last={this.state.last}
+                                    imageUrl={this.state.imageUrl}
+                                />
+                            </div>
+                        </div>
+                        <div className="uploader">
+                            {this.state.imageUploaderIsVisible && (
+                                <Uploader
+                                    className="uploader"
+                                    methodInApp={this.methodInApp}
+                                    toggleModal={this.toggleModal}
+                                />
+                            )}
+                        </div>
+                        <div className="profile">
+                                <Route exact path="/"
+                                render={props => (
+                                     <Profile
+                                first={this.state.first}
+                                last={this.state.last}
+                                imageUrl={this.state.imageUrl}
+                                bio={this.state.bio}
+                                updateBioInApp={this.updateBioInApp}
+                            /> 
+                                )}
+                          
+                           />
+                        </div>
+                        
+                    
+                            <Route
+                                    path="/user/:id"
+                                    render={props => (
+                                        <OthersProfile
+                                        key={props.match.url}
+                                        match={props.match}
+                                        history={props.history}
+                                   
+                                    />)}
+                                    />
                 </div>
-                </BrowserRouter>
+            </BrowserRouter>
         )
     }
 

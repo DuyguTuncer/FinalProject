@@ -65,3 +65,9 @@ export default class BioEditior extends Component {
         );
     }
 }
+
+
+
+
+
+
