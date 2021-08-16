@@ -8,6 +8,13 @@ const cookieSession = require("cookie-session");
 const s3 = require("./s3");
 const multer = require("multer");
 const uidSafe = require("uid-safe");
+// socket.io boiler plate code
+const server = require("http").Server(app);
+const io = require("socket.io")(server, {
+    allowRequest: (req, callback) =>
+        callback(null, req.headers.referer.startsWith("http://localhost:3000")),
+});
+// ++++++++++++++
 
 const diskStorage = multer.diskStorage({
     destination: function (req, file, callback) {
@@ -117,23 +124,23 @@ app.post("/login", (req, res) => {
         .catch((err) => console.log("Error when finding email", err));
 });
 
-// app.get("/user", (req, res) => {
-//     console.log("userId is:", req.session.userId);
-//     db.getUser(req.session.userId)
-//         .then((result) => {
-//             console.log("result for app.js get user", result.rows[0]);
-//             res.json({
-//                 success: true,
-//                 userInfo: result.rows[0],
-//             });
-//         })
-//         .catch((err) => {
-//             console.log("eroro in user route:", err);
-//             res.json({
-//                 success: false,
-//             });
-//         });
-// });
+app.get("/user", (req, res) => {
+    console.log("userId is:", req.session.userId);
+    db.getUser(req.session.userId)
+        .then((result) => {
+            console.log("result for app.js get user", result.rows[0]);
+            res.json({
+                success: true,
+                userInfo: result.rows[0],
+            });
+        })
+        .catch((err) => {
+            console.log("eroro in user route:", err);
+            res.json({
+                success: false,
+            });
+        });
+});
 
 app.post("/upload", uploader.single("file"), s3.upload, (req, res) => {
     // console.log("req.body", req.body);
@@ -197,6 +204,6 @@ app.get("*", function (req, res) {
     res.sendFile(path.join(__dirname, "..", "client", "index.html"));
 });
 
-app.listen(process.env.PORT || 3001, function () {
+server.listen(process.env.PORT || 3001, function () {
     console.log("I'm listening.");
 });
