@@ -208,7 +208,7 @@ app.get("/api/findpeople", (req, res) => {
 });
 
 app.get("/api/findpeople/:name", (req, res) => {
-    console.log("req.params in /api/findpeople:name:", req.params);
+    console.log("req.params in /api/findpeople/:name:", req.params);
     db.findPeopleWithSearchTerm(req.params.name)
         .then(({ rows }) => {
             console.log("rows in /api/findpeople:name: ", rows);
@@ -218,6 +218,17 @@ app.get("/api/findpeople/:name", (req, res) => {
             );
         })
         .catch((err) => console.log("Error iin /api/findpeople", err));
+});
+
+app.get("/checkFriendship/:friendsId", async (req, res) => {
+    console.log("/checkFriends/:friendsId route req.params", req.params.friendsId);
+    const { rows } = await db
+        .checkFriendship(req.session.userId, req.params.friendsId)
+        .catch((err) => {
+            console.log("Errorororor in /checkFriends/:friendsId", err);
+        });
+    console.log("rows in /checkFriends/:friendsId ", rows);
+    res.json(rows);
 });
 
 app.get("/logout", function (req, res) {
