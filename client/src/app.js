@@ -81,8 +81,13 @@ export default class App extends Component {
                                 information
                             </h1>
                         )}
-
                         <Logo className="logo" />
+                        <Route
+                            path="/findpeople"
+                            render={(props) => <FindPeople />}
+                        />
+                        <Link to="/findpeople">Find other people</Link>
+
                         <div onClick={this.toggleModal}>
                             <ProfilePic
                                 className="profilePic"
@@ -127,11 +132,11 @@ export default class App extends Component {
                             />
                         )}
                     />
-                    <Route
+                    {/* <Route
                         path="/findpeople"
                         render={(props) => <FindPeople />}
                     />
-                    <Link to="/findpeople">Find other people</Link>
+                    <Link to="/findpeople">Find other people</Link> */}
                 </div>
             </BrowserRouter>
         );

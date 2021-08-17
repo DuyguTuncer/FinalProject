@@ -195,10 +195,23 @@ app.get("/api/user/:id", (req, res) => {
         .catch((err) => console.log("Error in /api/user/:id", err));
 });
 
-app.get("/api/findpeople", async (req, res) => {
+app.get("/api/findpeople", (req, res) => {
     db.findPeople()
         .then(({ rows }) => {
             console.log("rows in /api/findpeople: ", rows);
+            res.json(
+                // success: true,
+                rows
+            );
+        })
+        .catch((err) => console.log("Error iin /api/findpeople", err));
+});
+
+app.get("/api/findpeople/:name", (req, res) => {
+    console.log("req.params in /api/findpeople:name:", req.params);
+    db.findPeopleWithSearchTerm(req.params.name)
+        .then(({ rows }) => {
+            console.log("rows in /api/findpeople:name: ", rows);
             res.json(
                 // success: true,
                 rows

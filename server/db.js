@@ -43,6 +43,15 @@ module.exports.getUser = (id) => {
 };
 
 module.exports.findPeople = () => {
-    return db.query(`SELECT first, last, imageurl FROM socialnetwork ORDER BY id DESC`);
+    return db.query(
+        `SELECT first, last, imageurl FROM socialnetwork ORDER BY id DESC LIMIT 3`
+    );
+};
+
+module.exports.findPeopleWithSearchTerm = (searchTerm) => {
+    return db.query(
+        `SELECT id, first, last, imageurl FROM socialnetwork WHERE (first || ' ' || last) ILIKE $1 ORDER BY id ASC LIMIT 8`,
+        [searchTerm + "%"]
+    );
 };
 
