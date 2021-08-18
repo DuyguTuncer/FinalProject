@@ -73,8 +73,19 @@ module.exports.addFriendship = (senderId, recipientId) => {
 
 module.exports.deleteFriendship = (senderId, recipientId) => {
     return db.query(`DELETE FROM friendships WHERE recipient_id=$1`, [
-        senderId,
         recipientId,
+        senderId,
     ]);
+};
+
+module.exports.updateFriendship = (senderId, recipientId) => {
+    console.log("running updateFriend query");
+    return db.query(
+        `UPDATE friendships SET accepted = ($3)
+        WHERE (recipient_id = $1 
+        AND sender_id = $2)
+        OR (recipient_id = $2 AND sender_id = $1);`,
+        [senderId, recipientId, true]
+    );
 };
 

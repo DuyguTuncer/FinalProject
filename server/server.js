@@ -16,6 +16,7 @@ const io = require("socket.io")(server, {
 });
 // ++++++++++++++
 
+
 const diskStorage = multer.diskStorage({
     destination: function (req, file, callback) {
         callback(null, __dirname + "/uploads");
@@ -221,7 +222,10 @@ app.get("/api/findpeople/:name", (req, res) => {
 });
 
 app.get("/checkFriendship/:friendsId", async (req, res) => {
-    console.log("/checkFriends/:friendsId route req.params", req.params.friendsId);
+    console.log(
+        "/checkFriends/:friendsId route req.params",
+        req.params.friendsId
+    );
     const { rows } = await db
         .checkFriendship(req.session.userId, req.params.friendsId)
         .catch((err) => {
@@ -229,6 +233,41 @@ app.get("/checkFriendship/:friendsId", async (req, res) => {
         });
     console.log("rows in /checkFriends/:friendsId ", rows);
     res.json(rows);
+});
+
+app.post("/checkFriendship", async (req, res) => {
+    console.log("post request in /checkFriendship in response to click");
+    console.log("req.body in /checkFriendship post request", req.body);
+    const { buttonText, friendsId } = req.body;
+
+    if (
+        buttonText === "Unfriend / End Friendship" ||
+        buttonText === "Cancel Friend Request"
+    ) {
+        await db
+            .deleteFriendship(req.session.userId, friendsId)
+            .catch((err) => {
+                console.log("Erroror in deleteFriendship", err);
+            });
+
+        return res.json("Send a Friend Request");
+    } else if (buttonText === "Send a Friend Request") {
+        console.log("Send a friend request");
+        await db
+            .addFriendship(req.session.userId, friendsId)
+            .catch((err) => {
+                console.log("Erroror in updateFriendship", err);
+            });
+        return res.json("Cancel Friend Request");
+    } else {
+        console.log("Request accepted");
+        await db
+            .updateFriendship(req.session.userId, friendsId)
+            .catch((err) => {
+                console.log("Erroror in  updateFriendship", err);
+            });
+        return res.json("Unfriend / End Friendship");
+    }
 });
 
 app.get("/logout", function (req, res) {
