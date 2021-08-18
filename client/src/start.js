@@ -2,12 +2,18 @@ import ReactDOM from "react-dom";
 import Welcome from "./welcome";
 import axios from "axios";
 import App from "./app";
+import { Provider } from "react-redux";
+import { createStore, applyMiddleware } from "redux";
+import * as immutableState from "redux-immutable-state-invariant";
+import reducer from "./redux/reducer.js";
 
-// ReactDOM.render(<HelloWorld />, document.querySelector("main"));
 
-// function HelloWorld() {
-//     return <div>Hello, World!</div>;
-// }
+const store = createStore(reducer, applyMiddleware(immutableState.default()));
+const element = (
+    <Provider store={store}>
+        <App />
+    </Provider>
+);
 
 axios.get("/user/id.json").then(function ({ data }) {
     console.log("data: ", data);
@@ -15,8 +21,6 @@ axios.get("/user/id.json").then(function ({ data }) {
     if (!data.userId) {
         ReactDOM.render(<Welcome />, document.querySelector("main"));
     } else {
-        // user registered/is logged in therefore the user
-        // should NOT see Welcome -> Registration, BUT instead see our logo
-        ReactDOM.render(<App />, document.querySelector("main"));
+        ReactDOM.render(element, document.querySelector("main"));
     }
 });

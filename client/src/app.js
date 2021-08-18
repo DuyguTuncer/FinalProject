@@ -8,6 +8,7 @@ import OthersProfile from "./othersprofile";
 import { BrowserRouter, Route } from "react-router-dom";
 import FindPeople from "./findpeople";
 import { Link } from "react-router-dom";
+import Friends from "./friends";
 
 export default class App extends Component {
     constructor() {
@@ -87,6 +88,9 @@ export default class App extends Component {
                             render={(props) => <FindPeople />}
                         />
                         <Link to="/findpeople">Find other people</Link>
+                        <div>
+                            <Link to="/friends">Friends</Link>
+                        </div>
 
                         <div onClick={this.toggleModal}>
                             <ProfilePic
@@ -132,54 +136,20 @@ export default class App extends Component {
                             />
                         )}
                     />
-                    {/* <Route
-                        path="/findpeople"
-                        render={(props) => <FindPeople />}
+                    <Route
+                        path="/friends"
+                        render={(props) => {
+                            <Friends
+                                key={props.match.url}
+                                match={props.match}
+                                history={props.history}
+                            />;
+                        }}
                     />
-                    <Link to="/findpeople">Find other people</Link> */}
                 </div>
             </BrowserRouter>
         );
     }
 }
 
-//     render() {
-//         return (
-//             <div>
-//                 <div className="errorMessage">
-//                     {this.state.error && (
-//                         <h1 style={{ color: "red" }}>
-//                             Something went wrong with the provided information
-//                         </h1>
-//                     )}
-//                     <Logo />
-//                     <div onClick={this.toggleModal}>
-//                         <ProfilePic
-//                             first={this.state.first}
-//                             last={this.state.last}
-//                             imageUrl={this.state.imageUrl}
-//                         />
-//                     </div>
-//                 </div>
-//                 <div className="uploader">
-//                     {this.state.imageUploaderIsVisible && (
-//                         <Uploader
-//                             className="uploader"
-//                             methodInApp={this.methodInApp}
-//                             toggleModal={this.toggleModal}
-//                         />
-//                     )}
-//                 </div>
-//                 <div className="profile">
-//                     <Profile
-//                         first={this.state.first}
-//                         last={this.state.last}
-//                         imageUrl={this.state.imageUrl}
-//                         bio={this.state.bio}
-//                         updateBioInApp={this.updateBioInApp}
-//                     />
-//                 </div>
-//             </div>
-//         );
-//     }
-// }
+

@@ -89,3 +89,12 @@ module.exports.updateFriendship = (senderId, recipientId) => {
     );
 };
 
+module.exports.receiveFriendsAndWannabees = (id) => {
+    return db.query(
+        `SELECT socialnetwork.id, firstname, lastname, imageurl, accepted FROM friendships JOIN socialnetwork ON (accepted = FALSE AND recipient_id = $1 AND sender_id = socialnetwork.id) OR
+                (accepted = TRUE AND recipient_id = $1 AND sender_id = socialnetwork.id) OR
+                (accepted = TRUE AND sender_id = $1 AND recipient_id = socialnetwork.id)`,
+        [id]
+    );
+};
+

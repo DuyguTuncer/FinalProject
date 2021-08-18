@@ -270,6 +270,11 @@ app.post("/checkFriendship", async (req, res) => {
     }
 });
 
+// GET /friends-and-wannabees - gets the friends and wannabees array
+// POST /friendship/accept for accepting a friend request. You probably already have one from the friend button that will work perfectly well.
+// POST /friendship/end for ending a friendship. You probably already have one from the friend button that will work pefectly well.
+
+
 app.get("/logout", function (req, res) {
     (req.session.userId = null), (req.session.first = null);
     res.redirect("/");
