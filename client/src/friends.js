@@ -15,19 +15,23 @@ import {
 
 export default function Friends() {
     const dispatch = useDispatch();
-
     useEffect(() => {
-        (async () => {
-            const { data } = await axios.get("/api/friends").catch((err) => {
-                console.log("Errororo in friends, axios /friendships", err);
-            });
-            console.log(
-                "receiveFriendsAndWannabees(data)",
-                receiveFriendsAndWannabees(data)
-            );
+        console.log("mounting friends");
+        axios.get("/api/friends").then(({ data }) => {
+            console.log("data in axios friends", data);
             dispatch(receiveFriendsAndWannabees(data));
-        })();
+        });
     }, []);
+
+    // useEffect(() => {
+    //     (async () => {
+    //         const { data } = await axios.get("/api/friends").catch((err) => {
+    //             console.log("Errororo in friends, axios /api/friends", err);
+    //         });
+    //         console.log("data in axios friends.js", data);
+    //         dispatch(data);
+    //     })();
+    // }, []);
 
     const friends = useSelector((state) => {
         return (

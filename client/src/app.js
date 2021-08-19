@@ -127,6 +127,13 @@ export default class App extends Component {
                     </div>
 
                     <Route
+                        path="/test"
+                        render={(props) => {
+                            <h1>Hallo</h1>;
+                        }}
+                    />
+
+                    <Route
                         path="/user/:id"
                         render={(props) => (
                             <OthersProfile
@@ -136,6 +143,7 @@ export default class App extends Component {
                             />
                         )}
                     />
+
                     <Route
                         path="/friends"
                         render={(props) => {
@@ -151,5 +159,3 @@ export default class App extends Component {
         );
     }
 }
-
-
