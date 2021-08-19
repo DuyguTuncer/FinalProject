@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 export default function FindPeople() {
     const [users, setUsers] = useState([]);
@@ -24,22 +25,8 @@ export default function FindPeople() {
 
     return (
         <div>
-            <h3>Find People</h3>
-            <div>
-                <div>
-                    {users.map((user) => {
-                        <div key={user.id}>
-                            {user.first} {user.last}
-                            <img
-                                src={user.imageurl}
-                                alt={`${user.first} ${user.last}`}
-                            />
-                        </div>;
-                    })}
-                </div>
-            </div>
             <div className="searchUsers">
-                <label>Are you looking for someone in particular?</label>
+                <h3>Are you looking for someone in particular?</h3>
                 <input
                     type="text"
                     name="searchUser"
@@ -47,14 +34,39 @@ export default function FindPeople() {
                     placeholder="Enter name"
                     onChange={(e) => setSearchTerm(e.target.value)}
                 />
+                <h3>Find People</h3>
+
+                <div>
+                    <div>
+                        {users.map((user) => {
+                            <div key={user.id}>
+                                {user.first} {user.last}
+                                {/* <Link to={"/user/" + user.id}> */}
+                                <img
+                                    className="findPeopleImg"
+                                    // src={user.imageurl}
+                                    alt={`${user.first} ${user.last}`}
+                                    src={
+                                        user.imageurl ||
+                                        "/default-profilepic.jpg"
+                                    }
+                                />
+                                {/* </Link> */}
+                            </div>;
+                        })}
+                    </div>
+                </div>
 
                 {users.map((user) => (
                     <div className="recentUsers" key={user.id}>
+                        {/* <Link to={"/user/" + user.id}> */}
                         <img
+                            className="findPeopleImg"
                             src={user.imageurl}
                             alt={`${user.first} ${user.last}`}
                         />
-                        <p>
+                        {/* </Link> */}
+                        <p className="findPeopleUsers">
                             {user.first} {user.last}
                         </p>
                     </div>

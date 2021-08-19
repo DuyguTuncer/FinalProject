@@ -5,7 +5,7 @@ import { Login } from "./login";
 export default function Welcome() {
     return (
         <>
-            <h1>Welcome!</h1>
+            {/* <h1>Welcome!</h1> */}
             <HashRouter>
                 <div>
                     <Route exact path="/" component={Registration} />

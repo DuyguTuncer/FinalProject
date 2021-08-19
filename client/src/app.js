@@ -75,42 +75,56 @@ export default class App extends Component {
         return (
             <BrowserRouter>
                 <div className="mainContainer">
-                    <div className="header">
-                        {this.state.error && (
-                            <h1>
-                                Something went wrong with the provided
-                                information
-                            </h1>
-                        )}
-                        <Logo className="logo" />
-                        <Route
-                            path="/findpeople"
-                            render={(props) => <FindPeople />}
-                        />
-                        <Link to="/findpeople">Find other people</Link>
-                        <div>
-                            <Link to="/friends">Friends</Link>
+                    <div className="mainHeaderContainer">
+                        <div className="header">
+                            {this.state.error && (
+                                <h1>
+                                    Something went wrong with the provided
+                                    information
+                                </h1>
+                            )}
+                            <Logo className="logo" />
+                            {/* <Route
+                                path="/findpeople"
+                                render={(props) => <FindPeople />}
+                            /> */}
+                            <div className="links">
+                                <Link
+                                    className="findPeopleLink"
+                                    to="/findpeople"
+                                >
+                                    Find other people
+                                </Link>
+                                <Link className="friendsLink" to="/friends">
+                                    Friends
+                                </Link>
+                            </div>
                         </div>
-
-                        <div onClick={this.toggleModal}>
-                            <ProfilePic
-                                className="profilePic"
-                                first={this.state.first}
-                                last={this.state.last}
-                                imageUrl={this.state.imageUrl}
-                            />
+                        <div className="header2">
+                            <div onClick={this.toggleModal}>
+                                <ProfilePic
+                                    className="profilePic"
+                                    first={this.state.first}
+                                    last={this.state.last}
+                                    imageUrl={this.state.imageUrl}
+                                />
+                            </div>
                         </div>
                     </div>
-                    <div className="uploader">
-                        {this.state.imageUploaderIsVisible && (
-                            <Uploader
-                                className="uploader"
-                                methodInApp={this.methodInApp}
-                                toggleModal={this.toggleModal}
-                            />
-                        )}
+                    <div>
+                        <div className="layout">
+                            <div className="uploader">
+                                {this.state.imageUploaderIsVisible && (
+                                    <Uploader
+                                        className="InnerUploader"
+                                        methodInApp={this.methodInApp}
+                                        toggleModal={this.toggleModal}
+                                    />
+                                )}
+                            </div>
+                        </div>
                     </div>
-                    <div className="profile">
+                    <div className="profileContainer">
                         <Route
                             exact
                             path="/"
@@ -125,13 +139,25 @@ export default class App extends Component {
                             )}
                         />
                     </div>
-
-                    <Route
-                        path="/test"
-                        render={(props) => {
-                            <h1>Hallo</h1>;
-                        }}
-                    />
+                    <div className="findPeopleContainer">
+                        <Route
+                            path="/findpeople"
+                            render={(props) => <FindPeople />}
+                        />
+                    </div>
+                    {/* <div>
+                        <div className="layout">
+                            <div className="uploader">
+                                {this.state.imageUploaderIsVisible && (
+                                    <Uploader
+                                        className="InnerUploader"
+                                        methodInApp={this.methodInApp}
+                                        toggleModal={this.toggleModal}
+                                    />
+                                )}
+                            </div>
+                        </div>
+                    </div> */}
 
                     <Route
                         path="/user/:id"
@@ -146,13 +172,13 @@ export default class App extends Component {
 
                     <Route
                         path="/friends"
-                        render={(props) => {
+                        render={(props) => (
                             <Friends
                                 key={props.match.url}
                                 match={props.match}
                                 history={props.history}
-                            />;
-                        }}
+                            />
+                        )}
                     />
                 </div>
             </BrowserRouter>

@@ -48,13 +48,14 @@ export default class Uploader extends Component {
                 <p className="XButton" onClick={this.closeUploader}>
                     X
                 </p>
-                <h1>Change Your Profile Picture</h1>
+                <h2>Change Your Profile Picture</h2>
                 <h4>Click upload button to change your profile picture</h4>
                 <input
+                    className="inputFile"
                     type="file"
                     onChange={this.userFileSelection}
-                    className="fileInput"
                 />
+
                 <button className="uploadButton" onClick={this.uploadImage}>
                     Upload
                 </button>

@@ -51,41 +51,53 @@ export class Login extends Component {
 
     render() {
         return (
-            <section>
+            <div>
                 <form className="login">
-                    <h1>Log in</h1>
+                    <div className="loginContainer1">
+                        <img
+                            className="regsiterImage"
+                            src="https://dynaimage.cdn.cnn.com/cnn/c_fill,g_auto,w_1200,h_675,ar_16:9/https%3A%2F%2Fcdn.cnn.com%2Fcnnnext%2Fdam%2Fassets%2F210421112606-20210421-socializing-office-gfx.jpg"
+                        ></img>
+                    </div>
+                    <div className="loginContainer2">
+                        {this.state.error && (
+                            <h2 style={{ color: "white" }}>
+                                {this.state.errMessage} Please make sure to fill
+                                all the input fields correctly
+                            </h2>
+                        )}
 
-                    {this.state.error && (
-                        <h2 style={{ color: "red" }}>
-                            {this.state.errMessage} Error!!!!!!!
-                        </h2>
-                    )}
-
-                    <input
-                        name="emailAddress"
-                        placeholder="Email"
-                        onChange={this.handleChange}
-                    />
-                    <input
-                        type="password"
-                        name="password"
-                        placeholder="password"
-                        onChange={this.handleChange}
-                    />
-                    <button onClick={(e) => this.handleSubmit(e)}>
-                        Log in
-                    </button>
-                    <div>
-                        Did you forget your password?
-                        <p>
-                            {/* Reset password{" "} */}
-                            <Link to="/password-reset">
-                                Reset your password here!
-                            </Link>
-                        </p>
+                        <input
+                            name="emailAddress"
+                            placeholder="Email"
+                            onChange={this.handleChange}
+                        />
+                        <input
+                            type="password"
+                            name="password"
+                            placeholder="Password"
+                            onChange={this.handleChange}
+                        />
+                        <button
+                            className="registerButton"
+                            onClick={(e) => this.handleSubmit(e)}
+                        >
+                            Log in
+                        </button>
+                        <div>
+                            <p className="registerText">
+                                Did you forget your password?
+                            </p>
+                            <p className="registerText">
+                                {/* Reset password{" "} */}
+                                <Link to="/password-reset">
+                                    Reset your password here!
+                                </Link>
+                            </p>
+                        </div>
                     </div>
                 </form>
-            </section>
+            </div>
         );
     }
 }

@@ -274,7 +274,8 @@ app.post("/checkFriendship", async (req, res) => {
 // use traditional way
 app.get("/api/friends", (req, res) => {
     console.log("I am in server.js /api/friends route");
-    db.receiveFriendsAndWannabees(req.session.id)
+    console.log("req.sess.id", req.session.id);
+    db.receiveFriendsAndWannabees(req.session.userId)
         .then(({rows}) => {
             console.log("rows in friends and wannabees", rows);
             res.json( rows );

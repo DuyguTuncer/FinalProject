@@ -49,25 +49,41 @@ export default class BioEditior extends Component {
 
     render() {
         return (
-            <div>
-                <p>{this.props.bio}</p>
-                {this.state.editorVisible && (
+            <div className="generalContainer">
+                <div className="bioContainer">
                     <div>
-                        <textarea name="bio" onChange={this.handleChange} />
-                        {/* Make a post request after dealling with server */}
-                        <button onClick={this.updateBio}>Save</button>
+                        <p className="bioText">{this.props.bio}</p>
+                        {this.state.editorVisible && (
+                            <div className="texareaContainer">
+                                <div className="texarea">
+                                    <textarea
+                                        name="bio"
+                                        onChange={this.handleChange}
+                                    />
+                                </div>
+                                <div className="texarea">
+                                    <button
+                                        className="saveButton"
+                                        onClick={this.updateBio}
+                                    >
+                                        Save
+                                    </button>
+                                </div>
+                            </div>
+                        )}
                     </div>
-                )}
-                {!this.state.editorVisible && (
-                    <button onClick={this.textareaToggle}>Update Bio</button>
-                )}
+                    <div>
+                        {!this.state.editorVisible && (
+                            <button
+                                className="updateBioButton"
+                                onClick={this.textareaToggle}
+                            >
+                                Update Bio
+                            </button>
+                        )}
+                    </div>
+                </div>
             </div>
         );
     }
 }
-
-
-
-
-
-

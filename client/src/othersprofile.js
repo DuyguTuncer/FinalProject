@@ -15,7 +15,7 @@ export default class OthersProfile extends Component {
         };
         console.log("props: ", props);
     }
-    
+
     //try asnc await here
     componentDidMount() {
         console.log("othersProfile mounted");
@@ -29,27 +29,29 @@ export default class OthersProfile extends Component {
                 this.setState(data);
             })
             .catch((err) => console.log("err in /user: ", err));
-       
     }
 
     render() {
         return (
             <div className="othersProfile">
-                <img
-                    className="profilePic"
-                    src={this.state.imageurl}
-                    alt={`${this.state.first} ${this.state.last}`}
-                />
                 <div>
-                    <h2>
-                        {this.state.first} {this.state.last}
-                    </h2>
-                    <p>
-                        Here is my bio:
-                        {this.state.bio}
-                    </p>
+                    <img
+                        className="othersProfilePic"
+                        src={this.state.imageurl}
+                        alt={`${this.state.first} ${this.state.last}`}
+                    />
                 </div>
-                <FriendButton friendsId={this.props.match.params.id} />
+                <div className="othersProfileFeatures">
+                    <div>
+                        <h2 className="othersH2">
+                            {this.state.first} {this.state.last}
+                        </h2>
+                        <p className="othersP">Bio: {this.state.bio}</p>
+                    </div>
+                    <FriendButton
+                        friendsId={this.props.match.params.id}
+                    />
+                </div>
             </div>
         );
     }

@@ -53,7 +53,9 @@ export default function FriendButton({ friendsId }) {
 
     return (
         <div>
-            <button onClick={handleSubmit}>{buttonText}</button>
+            <button className="friendButton" onClick={handleSubmit}>
+                {buttonText}
+            </button>
         </div>
     );
 }

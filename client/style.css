@@ -5,39 +5,300 @@
 }
 
 body {
-    background-color: ghostwhite;
+    background-color: rgb(212, 212, 238);
 }
 
-/* main{
-    display: 
-} */
+.mainHeaderContainer {
+    display:flex;
+}
 
 .header {
     display: flex;
+   background-color: rgb(41, 41, 85);
+    width:100%;
+    
+}
+.header2 {
+    display: flex;
+  background-color: rgb(41, 41, 85);
 }
 
 .profilePic {
+    margin:20px;
     width: 150px;
     height:150px;
     object-fit: cover;
-    /* float:right; */
-    
 }
 
-/* .profilePicBig {
-    width: 200px;
-    height:200px;
-    object-fit: cover;
-} */
-
 .logoImage{
-    width:120px;
-    height:120px
+    margin:20px;
+    width: 150px;
+    height:150px;
+    object-fit: cover;
 }
  .errorMessage {
      font-size: 10px;
  }
 
- /* .mainContainer {
 
- } */
+ form {
+     display:flex;
+ }
+
+ .loginContainer2, .registerContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 20px;
+    background-color: rgb(41, 41, 85);
+    margin: 0;
+    width: 100%;
+    padding: 30px;
+    color: white;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-weight:300;
+    align-items: center;
+ }
+
+ .loginContainer1{
+     height:700px;
+ }
+
+ input {
+    margin-top:20px;
+    margin-bottom:20px;
+    border-right: none;
+    border-top: none;
+    border-left: none;
+    background-color: transparent;
+    outline: none;
+    caret-color: white;
+    color: darkgray;
+    font-size:large;
+}
+
+.login {
+    position:flex;
+    flex-direction:column;
+    /* position: absolute;
+    top: 40%;
+    left: 50%;
+    width:100%;
+    transform: translate(-50%, -50%);
+    background-image: url("https://dynaimage.cdn.cnn.com/cnn/c_fill,g_auto,w_1200,h_675,ar_16:9/https%3A%2F%2Fcdn.cnn.com%2Fcnnnext%2Fdam%2Fassets%2F210421112606-20210421-socializing-office-gfx.jpg"); */
+}
+
+.registration1 {
+height:600px;
+background-repeat: no-repeat, repeat;
+object-fit: cover;
+}
+
+/* .registration2{
+    display:block;
+} */
+
+section{
+   display:flex;
+   flex-direction: column;
+     /* position: absolute;
+    top: 20%;
+    left: 50%;
+    width:100%;
+    transform: translate(-50%, -50%); */
+}
+
+.regsiterImage {
+    width:100%;
+}
+
+.registerButton {
+    background-color: rgb(41, 41, 85);
+    color: white;
+    font-size: 20px;
+    margin-top: 20px;
+    cursor: pointer;
+    margin:20px;
+}
+
+.registerText {
+    padding:10px;
+}
+
+.biggerProfilePic {
+    width: 300px;
+    height:300px;
+    object-fit: cover;
+    margin:20px;
+    margin-left:100px;
+}
+
+.profileContainer {
+    display:flex;
+    /* background-color: purple; */
+}
+
+.hello {
+    font-size: 50px;
+}
+
+.generalContainer {
+    display:flex;
+}
+
+textarea {
+    width:400px;
+    height:100px;
+    background-color: rgb(248, 240, 241);
+    margin-top: 40px;
+    
+
+}
+.saveButton, .updateBioButton {
+    background-color: rgb(41, 41, 85);
+    color: white;
+    font-size: 20px;
+    margin-top: 20px;
+    cursor: pointer;
+    /* margin:20px; */
+}
+
+.layout {
+    background-color: rgb(41, 41, 85);
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.uploadButton {
+     background-color: rgb(41, 41, 85);
+    color: white;
+    font-size: 20px;
+    margin-top: 20px;
+    cursor: pointer;
+    margin:20px;
+}
+
+.XButton {
+    float:right;
+    font-size: 30px;
+}
+
+
+.bioText {
+    font-size: 25px;
+    padding-top:40px;
+    /* padding-left: 20px; */
+}
+
+.helloText {
+    font-size: 20px;
+    padding-top:40px;
+    margin-left:100px;
+    
+}
+
+.bioBox {
+    background-color: rgb(250, 244, 244);
+    /* padding-right:50px; */
+    margin:40px;
+    padding-right:300px;
+    border-radius:20px;
+}
+
+.findPeopleImg {
+    width: 200px;
+    height:200px;
+    object-fit: cover;
+}
+
+.findPeopleContainer {
+    margin-left: 50px;
+    margin-top:50px;
+}
+
+.findPeopleUsers {
+    padding-bottom:30px;
+}
+
+.othersProfilePic {
+    /* margin:20px; */
+    margin-left:40px;
+    width: 200px;
+    height:200px;
+    object-fit: cover;
+}
+
+.othersProfile {
+    display:flex;
+  
+}
+
+.othersProfileFeatures {
+ margin-left:30px;
+}
+
+/* .othersH2 {
+} */
+
+.othersP {
+    margin-bottom:30px;
+}
+
+.friendButton {
+    background-color: rgb(41, 41, 85);
+    color: white;
+    font-size: 20px;
+    margin-top: 20px;
+    cursor: pointer;
+}
+
+.links {
+  margin:20px;
+}
+
+.findPeopleLink, .friendsLink {
+    color:white;
+    margin:20px;
+    font-size: 22px;
+}
+
+.friendsPic{
+     width: 200px;
+    height:200px;
+    object-fit: cover;
+}
+
+.wannabeeContainer {
+     margin-left: 50px;
+    margin-top:50px;
+}
+
+.wannabeeText{
+   padding-bottom:30px;
+}
+
+.friendsButton {
+background-color: rgb(41, 41, 85);
+    color: white;
+    font-size: 15px;
+    margin-bottom: 20px;
+    cursor: pointer;
+   
+}
+
+.cont {
+    display:flex;
+}
+
+.acceptedFriends {
+    margin-left: 50px;
+    margin-top:50px;
+}
+
+
+
+
+
+

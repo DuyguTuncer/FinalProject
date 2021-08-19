@@ -61,45 +61,58 @@ export class Registration extends Component {
     render() {
         return (
             <section>
-                {this.state.error && (
-                    <h2 style={{ color: "red" }}>
-                        {this.state.error} Error!!!!!!!
-                    </h2>
-                )}
-                <form>
-                    <input
-                        name="first"
-                        placeholder="First Name"
-                        onChange={this.handleChange}
-                    />
-                    <input
-                        name="last"
-                        placeholder="Last Name"
-                        onChange={this.handleChange}
-                    />
-                    <input
-                        name="emailAddress"
-                        placeholder="Email"
-                        onChange={this.handleChange}
-                    />
-                    <input
-                        type="password"
-                        name="password"
-                        placeholder="password"
-                        onChange={this.handleChange}
-                    />
-                    <button onClick={(e) => this.handleSubmit(e)}>
-                        Register
-                    </button>
-                    <div>
-                        Have you already registered?
-                        <p>
-                            Click <Link to="/login">here</Link> to log in!
-                        </p>
-                    </div>
-                </form>
+                <div className="registration1">
+                    <img className ="regsiterImage" src="https://dynaimage.cdn.cnn.com/cnn/c_fill,g_auto,w_1200,h_675,ar_16:9/https%3A%2F%2Fcdn.cnn.com%2Fcnnnext%2Fdam%2Fassets%2F210421112606-20210421-socializing-office-gfx.jpg"></img>
+                </div>
+                <div className="registration2">
+                    {/* <h1>Social Media</h1> */}
 
-                {this.state.error && <h2>{this.state.error}</h2>}
+                    {this.state.error && (
+                        <h2 style={{ color: "white" }}>
+                            {this.state.error} Please make sure to fill all the
+                            input fields correctly
+                        </h2>
+                    )}
+                    <form>
+                        <div className="registerContainer">
+                            <input
+                                name="first"
+                                placeholder="First Name"
+                                onChange={this.handleChange}
+                            />
+                            <input
+                                name="last"
+                                placeholder="Last Name"
+                                onChange={this.handleChange}
+                            />
+                            <input
+                                name="emailAddress"
+                                placeholder="Email"
+                                onChange={this.handleChange}
+                            />
+                            <input
+                                type="password"
+                                name="password"
+                                placeholder="Password"
+                                onChange={this.handleChange}
+                            />
+                            <button
+                                className="registerButton"
+                                onClick={(e) => this.handleSubmit(e)}
+                            >
+                                Register
+                            </button>
+                            <p className="registerText">
+                                Have you already registered?
+                            </p>
+                            <p className="registerText">
+                                Click <Link to="/login">here</Link> to log in!
+                            </p>
+                        </div>
+                    </form>
+
+                    {this.state.error && <h2>{this.state.error}</h2>}
+                </div>
             </section>
         );
     }
