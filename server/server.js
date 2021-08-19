@@ -16,7 +16,6 @@ const io = require("socket.io")(server, {
 });
 // ++++++++++++++
 
-
 const diskStorage = multer.diskStorage({
     destination: function (req, file, callback) {
         callback(null, __dirname + "/uploads");
@@ -253,11 +252,9 @@ app.post("/checkFriendship", async (req, res) => {
         return res.json("Send a Friend Request");
     } else if (buttonText === "Send a Friend Request") {
         console.log("Send a friend request");
-        await db
-            .addFriendship(req.session.userId, friendsId)
-            .catch((err) => {
-                console.log("Erroror in updateFriendship", err);
-            });
+        await db.addFriendship(req.session.userId, friendsId).catch((err) => {
+            console.log("Erroror in updateFriendship", err);
+        });
         return res.json("Cancel Friend Request");
     } else {
         console.log("Request accepted");
@@ -273,6 +270,20 @@ app.post("/checkFriendship", async (req, res) => {
 // GET /friends-and-wannabees - gets the friends and wannabees array
 // POST /friendship/accept for accepting a friend request. You probably already have one from the friend button that will work perfectly well.
 // POST /friendship/end for ending a friendship. You probably already have one from the friend button that will work pefectly well.
+
+// use traditional way
+app.get("/api/friends", (req, res) => {
+    console.log("I am in server.js /api/friends route");
+    db.receiveFriendsAndWannabees(req.session.id)
+        .then(({rows}) => {
+            console.log("rows in friends and wannabees", rows);
+            res.json( rows );
+        })
+        .catch((err) => {
+            console.log("eroror in /server.js /api/friends routes", err);
+        });
+});
+
 
 
 app.get("/logout", function (req, res) {

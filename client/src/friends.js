@@ -1,23 +1,53 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { useSelector, useDispatch } from "react-redux";
+import {
+    receiveFriendsAndWannabees,
+    acceptFriendRequest,
+    unfriend,
+} from "./redux/friends/slice.js";
 
-export function FriendButton(props) {
-    console.log("props in FriendBtn:", props);
-    // you need to have access to the id of the otheruser! (the user that we want to befriend/cancel/end friendship)
-    // the other user's id lives inside OtherProfile and should be passed down as a prop
-    // this.props.match.params.id - part of browser router functionality.
+// 1)Dispatch an action when the component mounts to populate 
+// the global state with data about the current friends and wannabees
 
-    // when the component mounts, in useffect, we'll want to make a request to the server to find out our relationship status with the user whose page we're looking at.
-    // after we know the relationship status, we'll need to set the button text accordingly
-    // ex: if there is NO relationship, then the btn should say SEND FRIEND REQUEST/ MAKE FRIEND REQUEST
-    // if they're already friends, then the btn should say UNFRIEND
+// 2)Dispatch actions when the friendship buttons are clicked. 
+// (don't reuse the button from Part 8 here, it is probably not suited for this situation)
 
-    // when user click on the button, we want to send THAT button text to the server and update our database!!
-    // once the db has been updated, then we want to change the button text AGAIN to reflect their new status.
+export default function Friends() {
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        (async () => {
+            const { data } = await axios.get("/api/friends").catch((err) => {
+                console.log("Errororo in friends, axios /friendships", err);
+            });
+            console.log(
+                "receiveFriendsAndWannabees(data)",
+                receiveFriendsAndWannabees(data)
+            );
+            dispatch(receiveFriendsAndWannabees(data));
+        })();
+    }, []);
+
+    const friends = useSelector((state) => {
+        return (
+            state.friends &&
+            state.friendsAndWannabes.filter(({ accepted }) => accepted)
+        );
+    });
+    const wannabees = useSelector((state) => {
+        return (
+            state.friends &&
+            state.friendsAndWannabes.filter(({ accepted }) => !accepted)
+        );
+    });
+    console.log("friends in friends.js: ", friends);
+    console.log("wannabes in friends.js: ", wannabees);
 
     return (
         <div>
-            <button className="btn">OUR BUTTON TEXT</button>
+            <h1>Friends</h1>
+            <h1>Wannabees</h1>
         </div>
     );
 }
