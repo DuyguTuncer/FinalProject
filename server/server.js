@@ -40,13 +40,27 @@ app.use(express.static(path.join(__dirname, "..", "client", "public")));
 
 app.use(express.json());
 
-app.use(
-    cookieSession({
-        secret: `I'm always hungry for cookies.`,
-        maxAge: 1000 * 60 * 60 * 24 * 14,
-        sameSite: true,
-    })
-);
+// app.use(
+//     cookieSession({
+//         secret: `I'm always hungry for cookies.`,
+//         maxAge: 1000 * 60 * 60 * 24 * 14,
+//         sameSite: true,
+//     })
+// );
+
+// ++++++++++++++
+const cookieSessionMiddleware = cookieSession({
+    secret: `I'm always hungry for cookies.`,
+    maxAge: 1000 * 60 * 60 * 24 * 14,
+    sameSite: true,
+});
+
+app.use(cookieSessionMiddleware);
+
+io.use((socket, next) => {
+    cookieSessionMiddleware(socket.request, socket.request.res, next);
+});
+// ++++++++++++++
 
 app.get("/user/id.json", function (req, res) {
     res.json({
@@ -149,6 +163,7 @@ app.post("/upload", uploader.single("file"), s3.upload, (req, res) => {
     const fullUrl =
         "https://s3.amazonaws.com/duygusocialnetwork/" + req.file.filename;
     console.log("fullUrl:", fullUrl);
+    console.log("req.file:", req.file);
 
     if (req.file) {
         db.uploadImage(fullUrl, req.session.userId)
@@ -168,8 +183,6 @@ app.post("/upload", uploader.single("file"), s3.upload, (req, res) => {
 });
 
 app.post("/updatebio", async (req, res) => {
-    // If nothing went wrong the file is already in the uploads directory
-    // console.log("req.file: ", req.file);
     console.log("I am in updatebio: ", req.body);
 
     db.updateBio(req.session.userId, req.body.draftBio).then(({ rows }) => {
@@ -274,18 +287,157 @@ app.post("/checkFriendship", async (req, res) => {
 // use traditional way
 app.get("/api/friends", (req, res) => {
     console.log("I am in server.js /api/friends route");
-    console.log("req.sess.id", req.session.id);
+    console.log("req.sess.id", req.session.userId);
     db.receiveFriendsAndWannabees(req.session.userId)
-        .then(({rows}) => {
+        .then(({ rows }) => {
             console.log("rows in friends and wannabees", rows);
-            res.json( rows );
+            res.json(rows);
         })
         .catch((err) => {
             console.log("eroror in /server.js /api/friends routes", err);
         });
 });
 
+app.post("/checkButton/:buttonText", (req, res) => {
+    console.log("/checkButton/:buttonText", req.params.buttonText);
+    let senderId = req.session.userId;
+    let recipientId = req.session.recipient_id;
+    if (req.params.buttonText == "Send a Friend Request") {
+        let request = false;
+        console.log(
+            "Send request in : /checkButton/:buttonText",
+            senderId,
+            recipientId
+        );
+        db.addFriendship(senderId, recipientId, request).then((result) => {
+            console.log(
+                "/checkButton/db Send a Friend Request result.rows[0]: ",
+                result.rows[0]
+            );
+            res.json({
+                accepted: result.rows[0].accepted,
+                recipient: recipientId,
+            });
+        });
+    } else if (req.params.buttonText == "Accept FriendRequest") {
+        let request = true;
+        console.log(
+            " else if in /checkButton/update ",
+            senderId,
+            recipientId,
+            "status: ",
+            request
+        );
+        db.updateFriendship(recipientId, senderId, request)
+            .then((result) => {
+                console.log(
+                    "req.session.userId; req.session.recipient_id",
+                    req.session.userId,
+                    req.session.recipient_id
+                );
+                console.log(
+                    "/checkButton/db.updateFriendship:  RESULT: ",
+                    result.rows[0]
+                );
+                res.json({
+                    accepted: result.rows[0].accepted,
+                    recipient: recipientId,
+                });
+            })
+            .catch((err) => {
+                console.log(
+                    "ERROR: post/checkButton/buttontext/ updateFriendship",
+                    err
+                );
+            });
+    } else if (
+        req.params.buttonText == "Cancel friend request" ||
+        req.params.buttonText == "End friendship"
+    ) {
+        db.deleteRequest(senderId, recipientId)
+            .then(() => {
+                console.log("Friendship deleted");
+                res.json({});
+            })
+            .catch((err) => {
+                console.log(
+                    "ERROR: post/checkButton/buttontext/ deleteRequest",
+                    err
+                );
+            });
+    }
+});
 
+app.post("/button/:text", (req, res) => {
+    let senderId = req.session.userId;
+    let recipientId = req.body.otherId;
+    if (req.params.text == "cancel") {
+        db.deleteRequest(senderId, recipientId)
+            .then(() => {
+                console.log("Friendship deleted");
+                res.json({ success: true });
+            })
+            .catch((err) => {
+                console.log("ERROR: post/Button/cancel", err);
+            });
+    } else if (req.params.text == "accept") {
+        let request = true;
+        db.updateFriendship(recipientId, senderId, request)
+            .then((result) => {
+                console.log(
+                    "/button/db.updateFriendship:  RESULT: ",
+                    result.rows[0]
+                );
+                res.json({ success: true });
+            })
+            .catch((err) => {
+                console.log("ERROR: post/button/ updateFriendship", err);
+            });
+    }
+});
+
+app.post("/api/map", function (req, res) {
+    console.log("req.body in /api/map/", req.body);
+    db.insertLike(
+        req.body.trailId,
+        req.session.userId,
+        req.body.address,
+        req.body.title
+    )
+        .then((result) => {
+            console.log("result in /api/map/", result.rows[0]);
+            res.json({ success: true });
+        })
+        .catch((err) => {
+            console.log("error: /api/map/", err);
+            res.json({ success: false });
+        });
+});
+
+app.get("/api/map/:trailId", function (req, res) {
+    console.log("req.params in /api/map/:trailId", req.params);
+    db.getLikes(req.params.trailId)
+        .then((result) => {
+            console.log("result in /api/map/:trailId", result.rows[0]);
+            res.json({ count: result.rows[0].count });
+        })
+        .catch((err) => {
+            console.log("error: /api/map/", err);
+            res.json({ success: false });
+        });
+});
+
+app.get("/api/topThree", function (req, res) {
+    db.getTopThree()
+        .then((result) => {
+            console.log("result in /api/topThree", result.rows);
+            res.json(result.rows);
+        })
+        .catch((err) => {
+            console.log("error: /api/topThree", err);
+            res.json({ success: false });
+        });
+});
 
 app.get("/logout", function (req, res) {
     (req.session.userId = null), (req.session.first = null);
@@ -298,4 +450,34 @@ app.get("*", function (req, res) {
 
 server.listen(process.env.PORT || 3001, function () {
     console.log("I'm listening.");
+});
+
+io.on("connection", async function (socket) {
+    const userId = socket.request.session.userId;
+
+    try {
+        const { rows } = await db.getMessages();
+        console.log("rows in Socket: ", rows);
+
+        socket.emit("last-10-messages", rows);
+    } catch (error) {
+        console.log("error in Socket Connection: ", error);
+    }
+
+    socket.on("new-message", async (data) => {
+        console.log("data - New message from Chat: ", data);
+        try {
+            const { rows: message } = await db.getNewMessage(data, userId);
+            console.log("new message in the chat: ", message);
+
+            // const { rows: newMessage } = await db.getNewMessage();
+            // console.log("newMessage: ", newMessage);
+
+            io.emit("new-message-back", message);
+        } catch (error) {
+            console.log("error in New Message: ", error);
+        }
+    });
+
+    console.log("userId in Socket connection: ", userId);
 });

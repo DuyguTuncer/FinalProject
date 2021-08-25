@@ -27,7 +27,7 @@ export function unfriend(id) {
     };
 }
 
-// The friends reducer in friends/slice.js will need to include 3 if blocks to deal with 
+// The friends reducer in friends/slice.js will need to include 3 if blocks to deal with
 // our 3 different types of actions:
 
 // 1)friends/received: should set the state to be the array of friends and wannabees
@@ -39,7 +39,7 @@ export function unfriend(id) {
 // removed. (you may want to use the .filter() method)
 
 export default function friendsReducer(state = [], action) {
-    console.log("action in slice.js:", action);
+    // console.log("action in slice.js:", action);
     if (action.type == "friends/received") {
         state = action.payload.friends;
     }
@@ -47,18 +47,27 @@ export default function friendsReducer(state = [], action) {
         state = state.map((friend) => {
             if (friend.id === action.payload.id) {
                 return { ...friend, accepted: true };
+            } else {
+                return friend;
             }
         });
     }
+    // if (action.type == "friends/unfriended") {
+    //     state = state.map((friend) => {
+    //         if (friend.id === action.payload.id) {
+    //             return {};
+    //         }
+    //     });
+    // }
+    // return state;
     if (action.type == "friends/unfriended") {
         state = state.map((friend) => {
-            if (friend.id === action.payload.id) {
-                return {};
+            if (friend.id === action.payload) {
+                return { ...friend, accepted: false };
+            } else {
+                return friend;
             }
         });
     }
     return state;
 }
-
-
-

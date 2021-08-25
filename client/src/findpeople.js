@@ -36,36 +36,36 @@ export default function FindPeople() {
                 />
                 <h3>Find People</h3>
 
-                <div>
+                {/* <div>
                     <div>
                         {users.map((user) => {
                             <div key={user.id}>
                                 {user.first} {user.last}
-                                {/* <Link to={"/user/" + user.id}> */}
-                                <img
-                                    className="findPeopleImg"
-                                    // src={user.imageurl}
-                                    alt={`${user.first} ${user.last}`}
-                                    src={
-                                        user.imageurl ||
-                                        "/default-profilepic.jpg"
-                                    }
-                                />
-                                {/* </Link> */}
+                                <Link to={"/user/" + user.id}>
+                                    <img
+                                        className="findPeopleImg"
+                                        // src={user.imageurl}
+                                        alt={`${user.first} ${user.last}`}
+                                        src={
+                                            user.imageurl ||
+                                            "/default-profilepic.jpg"
+                                        }
+                                    />
+                                </Link>
                             </div>;
                         })}
                     </div>
-                </div>
+                </div> */}
 
                 {users.map((user) => (
                     <div className="recentUsers" key={user.id}>
-                        {/* <Link to={"/user/" + user.id}> */}
-                        <img
-                            className="findPeopleImg"
-                            src={user.imageurl}
-                            alt={`${user.first} ${user.last}`}
-                        />
-                        {/* </Link> */}
+                        <Link to={"/user/" + user.id}>
+                            <img
+                                className="findPeopleImg"
+                                src={user.imageurl}
+                                alt={`${user.first} ${user.last}`}
+                            />
+                        </Link>
                         <p className="findPeopleUsers">
                             {user.first} {user.last}
                         </p>

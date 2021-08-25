@@ -290,12 +290,192 @@ background-color: rgb(41, 41, 85);
 
 .cont {
     display:flex;
+    justify-content: center;
 }
 
-.acceptedFriends {
+.friendsContainer {
     margin-left: 50px;
     margin-top:50px;
 }
+
+.acceptedFriendsText {
+    margin-top:50px;
+    margin-bottom:30px;
+}
+
+/* yyyyyyyyyyyyyyyyyyyyyyyyyy */
+.weatherLink, .chatLink, .map {
+color:white;
+    margin:20px;
+    font-size: 22px;
+}
+
+
+.mapContainer {
+    display:flex;
+    justify-content: center;
+   
+}
+
+.map-container {
+    width:1000px;
+    height: 600px;
+}
+
+.logoBike {
+    width: 40px;
+    height: 40px;
+}
+
+.bikeButton {
+    background:none;
+    border:none;
+    cursor:pointer;
+}
+
+.likeButton {
+    /* width: 40px;
+    height: 40px; */
+}
+.mapboxgl-popup-content{
+    width:400px;
+    height: 500px;
+}
+
+.weatherContainer{
+  
+    background-image:url("/images/mountain.jpg");
+    background-size:cover;
+    background-position:bottom;
+    transition: 0,4 ease-out;
+
+}
+
+.weatherContainer .warm {
+    background-image:url("/images/mountains-weather.jpg");
+}
+
+.weatherMain{
+    min-height: 75vh;
+    background-image: linear-gradient(to bottom, rgba(0,0,0, 0.2), rgba(0,0,0,0.75));
+    padding:30px;
+}
+
+.searchBox {
+    width:100%;
+    margin: 0 0 75 px;
+}
+
+.searchBar {
+    text-align: center;
+}
+
+.searchBar, .searchBox{
+    display:block;
+    width:100%;
+    padding:15px;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 16px;
+    box-shadow:0px 5px rgba(0,0,0, 0.2);
+    color:#313131;
+    font-size:20px;
+    transition: 0.4 ease;
+}
+
+.searchBox, .searchBar:focus {
+    background-color: rgba(248, 241, 241, 0.5);
+}
+
+.locationBox, .location{
+    margin:25px;
+    color:#fff;
+    font-size:32px;
+    font-weight: 500;
+    text-shadow: 3px 3px rgba(50, 50, 70, 0,5);
+}
+
+.locationBox, .date {
+    color:#fff;
+    font-size:20px;
+    font-weight: 300;
+    text-align:center;
+    text-shadow: 2px 2px rgba(50, 50, 50, 0.5);
+}
+
+.weather {
+    text-align:center;
+}
+
+.weather, .temp {
+    text-align:center;
+    margin:25px;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 16px;
+    padding: 15px 25px;
+    color:#fff;
+    font-size:105px;
+    font-weight: 900;
+    text-shadow: 2px 2px rgba(50, 50, 50, 0.5);
+    text-align: center;
+    box-shadow: 3px 6px rgba(0, 0, 0, 0.2);
+}
+
+.weatherBox, .weather {
+    color:#fff;
+    font-size: 48px;
+    font-weight: 700;
+    text-shadow: 2px 2px rgba(50, 50, 50, 0.5);
+}
+
+.chatBigContainer {
+    display:flex;
+    justify-content: center;
+    text-align:center;
+}
+
+.chatContainer {
+    display:flex;
+    flex-direction: column;
+    text-align:center;
+    background-color: #fff;
+    width:700px;
+    height: 700px;
+    box-shadow: 3px 6px rgba(0, 0, 0, 0.2);
+    border-radius: 16px;
+}
+
+.chatChild{
+    background-color: rgba(194, 189, 189, 0.5);
+    border-radius: 16px;
+    width:400px;
+    height: 500px;
+}
+
+.messageProfilePic {
+     width: 75px;
+    height:75px;
+    object-fit: cover;
+}
+
+.trailImg {
+     width: 380px;
+    height:100px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.mapMain{
+    display:flex;
+}
+
+.topThreeMain{
+    margin:40px;
+}
+
+.topThree{
+    margin:40px;
+}
+
 
 
 

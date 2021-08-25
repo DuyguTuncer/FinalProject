@@ -44,7 +44,7 @@ module.exports.getUser = (id) => {
 
 module.exports.findPeople = () => {
     return db.query(
-        `SELECT first, last, imageurl FROM socialnetwork ORDER BY id DESC LIMIT 3`
+        `SELECT id, first, last, imageurl FROM socialnetwork ORDER BY id DESC LIMIT 3`
     );
 };
 
@@ -72,10 +72,11 @@ module.exports.addFriendship = (senderId, recipientId) => {
 };
 
 module.exports.deleteFriendship = (senderId, recipientId) => {
-    return db.query(`DELETE FROM friendships WHERE recipient_id=$1`, [
-        recipientId,
-        senderId,
-    ]);
+    return db.query(
+        `DELETE FROM friendships WHERE (recipient_id=$1 AND sender_id=$2)
+        OR (recipient_id = $2 AND sender_id = $1);`,
+        [recipientId, senderId]
+    );
 };
 
 module.exports.updateFriendship = (senderId, recipientId) => {
@@ -95,6 +96,87 @@ module.exports.receiveFriendsAndWannabees = (id) => {
                 (accepted = TRUE AND recipient_id = $1 AND sender_id = socialnetwork.id) OR
                 (accepted = TRUE AND sender_id = $1 AND recipient_id = socialnetwork.id)`,
         [id]
+    );
+};
+
+module.exports.deleteRequest = (senderId, recipientId) => {
+    return db.query(
+        `DELETE FROM friendships WHERE sender_id = $1 AND recipient_id =$2`,
+        [senderId, recipientId]
+    );
+};
+
+module.exports.getMessages = () => {
+    return db.query(
+        `SELECT socialnetwork.first,socialnetwork.last, socialnetwork.imageurl, messages.text, messages.id, messages.user_id
+        FROM messages
+        JOIN socialnetwork
+        ON (socialnetwork.id = user_id)
+        ORDER BY messages.id DESC
+        LIMIT 10`
+    );
+};
+
+module.exports.newMessage = (text, userId) => {
+    return db.query(
+        `INSERT INTO messages (text, user_id) VALUES ($1,$2) RETURNING text`,
+        [text, userId]
+    );
+};
+
+module.exports.getNewMessage = (text, userId) => {
+    return db.query(
+        `WITH "user" 
+        AS ( SELECT * FROM socialnetwork WHERE id = $2),
+        new_message AS (INSERT INTO messages (text, user_id) VALUES ($1, $2) RETURNING text, user_id)
+        SELECT first, last, imageurl, text, user_id FROM "user", new_message`,
+        [text, userId]
+    );
+};
+
+// module.exports.insertLike = (trailId, userId) => {
+//     console.log("I am in db.js insertlike");
+//     return db.query(
+//         `INSERT INTO location_likes (trail_id, user_id) VALUES ($1,$2) RETURNING trail_id`,
+//         [trailId, userId]
+//     );
+// };
+
+module.exports.insertLike = (trailId, userId, address, title) => {
+    console.log("I am in db.js insertlike");
+    return db.query(
+        `INSERT INTO location_likes (trail_id, user_id, address, title) VALUES ($1,$2,$3,$4) RETURNING trail_id`,
+        [trailId, userId, address, title]
+    );
+};
+
+module.exports.getLikes = (trailId) => {
+    console.log("I am in getLikes db");
+    return db.query(
+        `SELECT trail_id, COUNT(trail_id) 
+                FROM location_likes 
+                WHERE trail_id = $1
+                GROUP BY trail_id;`,
+        [trailId]
+    );
+};
+
+module.exports.getTopThree = () => {
+    console.log("I am in topthree db");
+    return db.query(
+        `SELECT trail_id, COUNT(trail_id) 
+                FROM location_likes 
+                GROUP BY trail_id
+                ORDER BY COUNT DESC
+                LIMIT 3;`
+    );
+};
+
+module.exports.insertComment = (trailId, userId, comment) => {
+    console.log("I am in db.js insertComment");
+    return db.query(
+        `INSERT INTO comnets (trail_id, user_id, comment) VALUES ($1,$2,$3) RETURNING trail_id`,
+        [trailId, userId, comment]
     );
 };
 

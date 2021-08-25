@@ -26,7 +26,7 @@ export default class Uploader extends Component {
             .post("/upload", formData)
             .then((response) => {
                 console.log("response:", response);
-                console.log("axios upload email:", response.data.imgUrl);
+                console.log("axios upload:", response.data.imgUrl);
                 this.props.methodInApp(response.data.imgUrl);
             })
             .catch((err) => {

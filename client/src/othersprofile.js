@@ -19,6 +19,7 @@ export default class OthersProfile extends Component {
     //try asnc await here
     componentDidMount() {
         console.log("othersProfile mounted");
+        console.log("this.props.match", this.props.match);
         let othersId = this.props.match.params.id;
         console.log("this.props.match.params.id: ", othersId);
 

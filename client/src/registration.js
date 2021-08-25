@@ -13,6 +13,7 @@ export class Registration extends Component {
     handleChange({ target }) {
         console.log("which input is running handleChange?", target.name);
         console.log("value the suer typed:", target.value);
+        console.log("what is target", target);
         // updating state!
         this.setState(
             {
@@ -41,7 +42,8 @@ export class Registration extends Component {
                     // we need to update our component's state to conditionally
                     // make an error appear
                     this.setState({
-                        error: "Please make sure to complete all input filelds!",
+                        // error: "Please make sure to complete all input filelds!"
+                        error:true,
                     });
                 }
             })
@@ -50,7 +52,7 @@ export class Registration extends Component {
                 // we need to update our component's state to conditionally
                 // make an error appear
                 this.setState({
-                    error: "Please make sure to complete all input filelds!",
+                    error: true,
                 });
             });
     }
@@ -62,19 +64,20 @@ export class Registration extends Component {
         return (
             <section>
                 <div className="registration1">
-                    <img className ="regsiterImage" src="https://dynaimage.cdn.cnn.com/cnn/c_fill,g_auto,w_1200,h_675,ar_16:9/https%3A%2F%2Fcdn.cnn.com%2Fcnnnext%2Fdam%2Fassets%2F210421112606-20210421-socializing-office-gfx.jpg"></img>
+                    <img
+                        className="regsiterImage"
+                        src="https://dynaimage.cdn.cnn.com/cnn/c_fill,g_auto,w_1200,h_675,ar_16:9/https%3A%2F%2Fcdn.cnn.com%2Fcnnnext%2Fdam%2Fassets%2F210421112606-20210421-socializing-office-gfx.jpg"
+                    ></img>
                 </div>
                 <div className="registration2">
-                    {/* <h1>Social Media</h1> */}
-
-                    {this.state.error && (
-                        <h2 style={{ color: "white" }}>
-                            {this.state.error} Please make sure to fill all the
-                            input fields correctly
-                        </h2>
-                    )}
                     <form>
                         <div className="registerContainer">
+                            {this.state.error && (
+                                <h2 style={{ color: "white" }}>
+                                    {this.state.error} Please make sure to fill
+                                    all the input fields correctly
+                                </h2>
+                            )}
                             <input
                                 name="first"
                                 placeholder="First Name"

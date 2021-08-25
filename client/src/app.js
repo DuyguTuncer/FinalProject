@@ -9,6 +9,10 @@ import { BrowserRouter, Route } from "react-router-dom";
 import FindPeople from "./findpeople";
 import { Link } from "react-router-dom";
 import Friends from "./friends";
+import Chat from "./chat";
+import Map from "./map";
+import Weather from "./weather";
+
 
 export default class App extends Component {
     constructor() {
@@ -20,6 +24,7 @@ export default class App extends Component {
             imageUrl: "",
             bio: "",
             imageUploaderIsVisible: false,
+            popupVisible: false,
         };
         this.componentDidMount = this.componentDidMount.bind(this);
         this.toggleModal = this.toggleModal.bind(this);
@@ -34,10 +39,11 @@ export default class App extends Component {
             .then(({ data }) => {
                 if (data.success) {
                     console.log("data.userInfo", data.userInfo);
-                    let { firstname, lastname, imageurl, bio } = data.userInfo;
+                    // console.log("data", data);
+                    let { first, last, imageurl, bio } = data.userInfo;
                     this.setState({
-                        first: firstname,
-                        last: lastname,
+                        first: first,
+                        last: last,
                         imageUrl: imageurl,
                         bio: bio,
                     });
@@ -57,6 +63,12 @@ export default class App extends Component {
         });
     }
 
+    popupToggleModal() {
+        this.setState({
+            popupVisible: !this.state.popupVisible,
+        });
+    }
+
     methodInApp(arg) {
         console.log("methodInApp is running! Argument passed is:", arg);
         this.setState({ imageUrl: arg });
@@ -72,6 +84,7 @@ export default class App extends Component {
     }
 
     render() {
+        // console.log("state in app", this.state);
         return (
             <BrowserRouter>
                 <div className="mainContainer">
@@ -98,6 +111,17 @@ export default class App extends Component {
                                 <Link className="friendsLink" to="/friends">
                                     Friends
                                 </Link>
+                                {/* yyyyyyyyyyyyyyyyyyyy */}
+                                <Link className="map" to="/map">
+                                    Map
+                                </Link>
+                                <Link className="chatLink" to="/chat">
+                                    Chat
+                                </Link>
+                                <Link className="weatherLink" to="/weather">
+                                    Weather
+                                </Link>
+                                {/* yyyyyyyyyyyyyyyyyyyy */}
                             </div>
                         </div>
                         <div className="header2">
@@ -116,7 +140,6 @@ export default class App extends Component {
                             <div className="uploader">
                                 {this.state.imageUploaderIsVisible && (
                                     <Uploader
-                                        className="InnerUploader"
                                         methodInApp={this.methodInApp}
                                         toggleModal={this.toggleModal}
                                     />
@@ -180,6 +203,36 @@ export default class App extends Component {
                             />
                         )}
                     />
+                    <div className="mapContainer">
+                        <div className="mapInner">
+                            <Route
+                                path="/map"
+                                render={(props) => (
+                                    <Map
+                                        key={props.match.url}
+                                        match={props.match}
+                                        history={props.history}
+                                        popupToggleModal={this.popupToggleModal}
+                                    />
+                                )}
+                            />
+                        </div>
+                    </div>
+                    <div className="weatherContainer">
+                        <div className="weatherInner">
+                            <Route
+                                path="/weather"
+                                render={(props) => (
+                                    <Weather
+                                        key={props.match.url}
+                                        match={props.match}
+                                        history={props.history}
+                                    />
+                                )}
+                            />
+                        </div>
+                    </div>
+                    <Route path="/chat" component={Chat} />
                 </div>
             </BrowserRouter>
         );

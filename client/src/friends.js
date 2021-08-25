@@ -27,6 +27,38 @@ export default function Friends() {
         })();
     }, []);
 
+    // --------------------------------------------------
+    const cancel = (arg) => {
+        const id = arg;
+        axios
+            .post("/button/cancel", { otherId: id })
+            .then(({ data }) => {
+                console.log("FRIENDS.JS: unfriend button worked", data);
+            })
+            .catch((err) => {
+                console.log(
+                    "FRIENds.JS: button clicked axios.post: ERROR:",
+                    err
+                );
+            });
+    };
+
+    const accept = (arg) => {
+        const id = arg;
+        axios
+            .post("/button/accept", { otherId: id })
+            .then(({ data }) => {
+                console.log("FRIENDS.JS: accept button worked", data);
+            })
+            .catch((err) => {
+                console.log(
+                    "FRIENds.JS: button clicked axios.post: ERROR:",
+                    err
+                );
+            });
+    };
+
+    // --------------------------------------------------
     const friends = useSelector((state) => {
         console.log("state", state);
         console.log("state.friends", state.friends);
@@ -47,13 +79,6 @@ export default function Friends() {
 
     return (
         <div className="cont">
-            {/* <h1>Friends</h1>
-            <h1>Wannabees</h1>
-            {wannabees &&
-                wannabees.map((user) => {
-                    return <h1 key={user.id}>{user.first}</h1>;
-                })} */}
-
             <div className="wannabeeContainer">
                 <h3 className="wannabeeText">
                     See who wants to be your friend
@@ -76,6 +101,8 @@ export default function Friends() {
                                 </p>
                                 <button
                                     onClick={() => {
+                                        dispatch(acceptFriendRequest(user.id));
+                                        accept(user.id);
                                     }}
                                     className="friendsButton"
                                 >
@@ -86,8 +113,106 @@ export default function Friends() {
                     ))}
             </div>
             <div>
-                <h3 className="acceptedFriends">See your Friends</h3>
+                {/* <h3 className="acceptedFriends">See your Friends</h3> */}
+                <div className="friendsContainer">
+                    <h3 className="acceptedFriendsText">See your Friends</h3>
+                    {friends &&
+                        friends.map((user) => (
+                            <div key={user.id}>
+                                <Link to={"/user/" + user.id}>
+                                    <img
+                                        className="friendsPic"
+                                        src={
+                                            user.imageurl ||
+                                            "/default-profilepic.jpg"
+                                        }
+                                    />
+                                </Link>
+                                <div>
+                                    <p>
+                                        {user.first} {user.last}
+                                    </p>
+                                    <button
+                                        onClick={() => {
+                                            dispatch(unfriend(user.id));
+                                            cancel(user.id);
+                                        }}
+                                        className="friendsButton"
+                                    >
+                                        Unfriend
+                                    </button>
+                                </div>
+                            </div>
+                        ))}
+                </div>
             </div>
         </div>
     );
 }
+
+//  return (
+//         <div className="cont">
+//             <div className="wannabeeContainer">
+//                 <h3 className="wannabeeText">
+//                     See who wants to be your friend
+//                 </h3>
+//                 {wannabees &&
+//                     wannabees.map((user) => (
+//                         <div key={user.id}>
+//                             <Link to={"/user/" + user.id}>
+//                                 <img
+//                                     className="friendsPic"
+//                                     src={
+//                                         user.imageurl ||
+//                                         "/default-profilepic.jpg"
+//                                     }
+//                                 />
+//                             </Link>
+//                             <div>
+//                                 <p>
+//                                     {user.first} {user.last}
+//                                 </p>
+//                                 <button
+//                                     onClick={() => {}}
+//                                     className="friendsButton"
+//                                 >
+//                                     Accept FriendRequest
+//                                 </button>
+//                             </div>
+//                         </div>
+//                     ))}
+//             </div>
+//             <div>
+//                 {/* <h3 className="acceptedFriends">See your Friends</h3> */}
+//                 <div className="friendsContainer">
+//                     <h3 className="acceptedFriendsText">See your Friends</h3>
+//                     {friends &&
+//                         friends.map((user) => (
+//                             <div key={user.id}>
+//                                 <Link to={"/user/" + user.id}>
+//                                     <img
+//                                         className="friendsPic"
+//                                         src={
+//                                             user.imageurl ||
+//                                             "/default-profilepic.jpg"
+//                                         }
+//                                     />
+//                                 </Link>
+//                                 <div>
+//                                     <p>
+//                                         {user.first} {user.last}
+//                                     </p>
+//                                     <button
+//                                         className="friendsButton"
+//                                         onClick={() => {}}
+//                                     >
+//                                         Unfriend / End Friendship
+//                                     </button>
+//                                 </div>
+//                             </div>
+//                         ))}
+//                 </div>
+//             </div>
+//         </div>
+//     );
+// }

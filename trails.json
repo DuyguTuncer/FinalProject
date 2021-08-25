@@ -1,0 +1,107 @@
+{
+    "type": "FeatureCollection",
+    "features": [
+        {
+            "geometry": {
+                "type": "Point",
+                "coordinates": [52.5239361, 13.26500165306343]
+            },
+            "type": "Feature",
+            "properties": {
+                "id":1,
+                "description": "Grunewald",
+                "marker-symbol": "rail-metro",
+                "title": "Grunewald",
+                "url": "http://www.wmata.com/rider_tools/pids/showpid.cfm?station_id=107",
+                "lines": ["Green"],
+                "address": "1411 Southern Avenue, Temple Hills, MD 20748",
+                "imageurl": "https://img1.oastatic.com/img2/25093896/2560x1920f/t.jpg"
+            }
+        },
+        {
+            "geometry": {
+                "type": "Point",
+                "coordinates": [52.50844935, 13.339369555100077]
+            },
+            "type": "Feature",
+            "properties": {
+                "id": 2,
+                "description": "Deanwood",
+                "marker-symbol": "rail-metro",
+                "title": "Berge",
+                "url": "http://www.wmata.com/rider_tools/pids/showpid.cfm?station_id=65",
+                "lines": ["Orange"],
+                 "imageurl": "https://live.staticflickr.com/65535/50104084828_4302f70646_b.jpg",
+                "address": "4720 Minnesota Avenue NE, Washington, DC 20019"
+            }
+        },
+        {
+            "geometry": {
+                "type": "Point",
+                "coordinates": [52.4523745, 13.4492579]
+            },
+            "type": "Feature",
+            "properties": {
+                "id": 3,
+                "description": "College Park",
+                "marker-symbol": "rail-metro",
+                "title": "Mügglesee",
+                "url": "http://www.wmata.com/rider_tools/pids/showpid.cfm?station_id=79",
+                "lines": ["Green"],
+                "imageurl": "https://ep1.pinkbike.org/p4pb20486352/p4pb20486352.jpg",
+                "address": "4931 Calvert Road, College Park, MD 20740"
+            }
+        },
+        {
+            "geometry": {
+                "type": "Point",
+                "coordinates": [52.5075033, 13.4103700]
+            },
+            "type": "Feature",
+            "properties": {
+                "id": 4,
+                "description": "Greenbelt",
+                "marker-symbol": "rail-metro",
+                "title": "trail 4",
+                "url": "http://www.wmata.com/rider_tools/pids/showpid.cfm?station_id=80",
+                "lines": ["Green"],
+                "imageurl": "https://i.ytimg.com/vi/cV-gHhnbsic/maxresdefault.jpg",
+                "address": "5717 Greenbelt Metro Drive, Greenbelt, MD 20740"
+            }
+        },
+        {
+            "geometry": {
+                "type": "Point",
+                "coordinates": [52.5071871, 13.390676]
+            },
+            "type": "Feature",
+            "properties": {
+                "id": 5,
+                "description": "West Hyattsville",
+                "marker-symbol": "rail-metro",
+                "title": "Rädlerstrasse",
+                "url": "http://www.wmata.com/rider_tools/pids/showpid.cfm?station_id=77",
+                "lines": ["Green"],
+                "imageurl": "https://mitvergnuegen.com/wp-content/uploads/2015/10/m_ggelberg1-600x338.jpg",
+                "address": "2700 Hamilton St., Hyattsville, MD 20782"
+            }
+        },
+        {
+            "geometry": {
+                "type": "Point",
+                "coordinates": [52.5371871, 13.390676]
+            },
+            "type": "Feature",
+            "properties": {
+                "id": 6,
+                "description": "West Hyattsville",
+                "marker-symbol": "rail-metro",
+                "title": "Bikestrasse",
+                "url": "http://www.wmata.com/rider_tools/pids/showpid.cfm?station_id=77",
+                "lines": ["Green"],
+                "imageurl": "https://www.bergwelten.com/files/touren/header/bike-trail-tirol-etappe-19-lanersbach-geiseljoch-weerberg-12359-0.jpg?impolicy=770x520_fc",
+                "address": "2700 Hamilton St., Hyattsville, MD 20782"
+            }
+        }
+    ]
+}

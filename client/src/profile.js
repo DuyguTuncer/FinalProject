@@ -9,6 +9,7 @@ export default function Profile({
     updateBioInApp,
 }) {
     console.log("bio info in profile.js", bio);
+    console.log("first nd last in profile.js", first, last);
     return (
         <div className ="bioBox">
             <div className="helloText">

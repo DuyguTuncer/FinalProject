@@ -28,6 +28,10 @@ export class Login extends Component {
         axios
             .post("/login", this.state)
             .then((resp) => {
+                console.log("response", resp);
+                console.log("response.data", resp.data);
+                console.log("resp.data.success", resp.data.success);
+
                 if (resp.data.success) {
                     location.reload();
                     // console.log(" location.reload();",   location.reload());
