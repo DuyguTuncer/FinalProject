@@ -439,8 +439,38 @@ app.get("/api/topThree", function (req, res) {
         });
 });
 
-app.get("/logout", function (req, res) {
-    (req.session.userId = null), (req.session.first = null);
+app.post("/api/comment", function (req, res) {
+    console.log("req.body in /api/comment", req.body);
+    db.insertComment(req.body.trailId, req.session.userId, req.body.comment)
+        .then((result) => {
+            db.getComments(req.body.trailId).then((result) => {
+                console.log("result in /api/comment/:trailId", result.rows[0]);
+                res.json(result.rows);
+            });
+        })
+        .catch((err) => {
+            console.log("error: /api/comment", err);
+            res.json({ success: false });
+        });
+});
+
+app.get("/api/comment/:trailId", function (req, res) {
+    console.log("req.params in /api/comment/:trailId", req.params);
+    db.getComments(req.params.trailId)
+        .then((result) => {
+            console.log("result in /api/comment/:trailId", result.rows[0]);
+            res.json(result.rows);
+        })
+        .catch((err) => {
+            console.log("error: /api/map/", err);
+            res.json({ success: false });
+        });
+});
+
+app.get("api/logout", function (req, res) {
+    (req.session.userId = null),
+    (req.session.first = null),
+    (req.session.last = null);
     res.redirect("/");
 });
 

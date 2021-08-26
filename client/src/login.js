@@ -60,7 +60,7 @@ export class Login extends Component {
                     <div className="loginContainer1">
                         <img
                             className="regsiterImage"
-                            src="https://dynaimage.cdn.cnn.com/cnn/c_fill,g_auto,w_1200,h_675,ar_16:9/https%3A%2F%2Fcdn.cnn.com%2Fcnnnext%2Fdam%2Fassets%2F210421112606-20210421-socializing-office-gfx.jpg"
+                            src="images/registrationBike.jpg"
                         ></img>
                     </div>
                     <div className="loginContainer2">
@@ -88,17 +88,17 @@ export class Login extends Component {
                         >
                             Log in
                         </button>
-                        <div>
-                            <p className="registerText">
+                        {/* <div> */}
+                        {/* <p className="registerText">
                                 Did you forget your password?
                             </p>
-                            <p className="registerText">
-                                {/* Reset password{" "} */}
-                                <Link to="/password-reset">
+                            <p className="registerText"> */}
+                        {/* Reset password{" "} */}
+                        {/* <Link to="/password-reset">
                                     Reset your password here!
-                                </Link>
-                            </p>
-                        </div>
+                                </Link> */}
+                        {/* </p>
+                        </div> */}
                     </div>
                 </form>
             </div>

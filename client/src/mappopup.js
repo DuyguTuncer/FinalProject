@@ -8,8 +8,6 @@ export default function MapPopup({ selectedTrail, setSelectedTrail }) {
     const [unlike, setUnlike] = useState(0);
     const [comment, setComment] = useState("");
 
-   
-
     useEffect(() => {
         (async () => {
             console.log("quering server for likes");
@@ -21,6 +19,13 @@ export default function MapPopup({ selectedTrail, setSelectedTrail }) {
         })();
     }, [selectedTrail.properties.id]);
 
+
+    useEffect(() => {
+        console.log(`"${comment}" has been rendered!`);
+        return () => {
+            console.log(`About to replace "${comment}" with something else.`);
+        };
+    });
 
     return (
         <Popup
@@ -39,7 +44,6 @@ export default function MapPopup({ selectedTrail, setSelectedTrail }) {
                 src={selectedTrail.properties.imageurl}
                 alt={selectedTrail.properties.address}
             />
-            <p>Likes: {count}</p>
             <button
                 className="likeButton"
                 onClick={(e) => {
@@ -63,7 +67,8 @@ export default function MapPopup({ selectedTrail, setSelectedTrail }) {
             >
                 Like!
             </button>
-            <button
+            <p>Likes: {count}</p>
+            {/* <button
                 style={{ color: "red" }}
                 onClick={(e) => {
                     e.preventDefault();
@@ -72,19 +77,10 @@ export default function MapPopup({ selectedTrail, setSelectedTrail }) {
             >
                 Unlike
             </button>
-            <p>Uniked: {unlike} </p>
-            {/* <TrailComments></TrailComments> */}
-            <div className="trailComments">
-                <input
-                    type="text"
-                    name="comment"
-                    id="comment"
-                    placeholder="Make a comment"
-                    onChange={(e) => setComment(e.target.value)}
-                />
-            </div>
-
-            <button>submit</button>
+            <p>Uniked: {unlike} </p> */}
+            <TrailComments
+                trailId={selectedTrail.properties.id}
+            ></TrailComments>
         </Popup>
     );
 }

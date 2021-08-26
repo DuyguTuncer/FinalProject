@@ -175,8 +175,21 @@ module.exports.getTopThree = () => {
 module.exports.insertComment = (trailId, userId, comment) => {
     console.log("I am in db.js insertComment");
     return db.query(
-        `INSERT INTO comnets (trail_id, user_id, comment) VALUES ($1,$2,$3) RETURNING trail_id`,
+        `INSERT INTO comments (trail_id, user_id, comment) VALUES ($1,$2,$3) RETURNING trail_id, comment`,
         [trailId, userId, comment]
+    );
+};
+
+module.exports.getComments = (trailId) => {
+    console.log("I am in db getComments");
+    return db.query(
+        `
+    SELECT socialnetwork.first, socialnetwork.last, comments.comment
+    FROM socialnetwork
+    FULL JOIN comments ON socialnetwork.id = comments.user_id
+    WHERE trail_id = $1
+    `,
+        [trailId]
     );
 };
 

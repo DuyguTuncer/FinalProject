@@ -47,6 +47,12 @@ export default class App extends Component {
                         imageUrl: imageurl,
                         bio: bio,
                     });
+                // } else {
+                //     const res = await axios.get("/api/logout/");
+                //     if (res.status == 200) {
+                //         location.replace("/");
+                //     }
+                // }
                 } else {
                     this.setState({ error: true });
                 }
@@ -102,7 +108,7 @@ export default class App extends Component {
                                 render={(props) => <FindPeople />}
                             /> */}
                             <div className="links">
-                                <Link
+                                {/* <Link
                                     className="findPeopleLink"
                                     to="/findpeople"
                                 >
@@ -110,7 +116,7 @@ export default class App extends Component {
                                 </Link>
                                 <Link className="friendsLink" to="/friends">
                                     Friends
-                                </Link>
+                                </Link> */}
                                 {/* yyyyyyyyyyyyyyyyyyyy */}
                                 <Link className="map" to="/map">
                                     Map
@@ -120,6 +126,22 @@ export default class App extends Component {
                                 </Link>
                                 <Link className="weatherLink" to="/weather">
                                     Weather
+                                </Link>
+                                {/* yyyyyyyyyyyyyyyyyyyy */}
+                                <Link
+                                    to={``}
+                                    onClick={async (e) => {
+                                        e.preventDefault();
+                                        const res = await axios.get(
+                                            "/api/logout/"
+                                        );
+
+                                        if (res.status == 200) {
+                                            location.replace("/");
+                                        }
+                                    }}
+                                >
+                                    Log out
                                 </Link>
                                 {/* yyyyyyyyyyyyyyyyyyyy */}
                             </div>

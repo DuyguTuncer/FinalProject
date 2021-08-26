@@ -1,6 +1,11 @@
-
 import { useState, useRef, useEffect } from "react";
-import ReactMapGL, { Marker, Popup } from "react-map-gl";
+import ReactMapGL, {
+    Marker,
+    Popup,
+    GeolocateControl,
+    NavigationControl,
+    ScaleControl,
+} from "react-map-gl";
 let secrets = require("../../secrets.json");
 import * as trails from "../../trails.json";
 import axios from "axios";
@@ -9,13 +14,28 @@ import TopThree from "./topthreetrails";
 
 export default function Map() {
     const [viewport, setViewport] = useState({
-        width: 1000,
-        height: 700,
+        width: 1300,
+        height: 810,
         latitude: 52.520008,
         longitude: 13.404954,
         zoom: 11,
     });
     const [selectedTrail, setSelectedTrail] = useState(null);
+
+    const geolocateControlStyle = {
+        right: 10,
+        top: 10,
+    };
+
+    const navControlStyle = {
+        right: 10,
+        top: 10,
+    };
+
+    const scaleControlStyle = {
+        left: 20,
+        bottom: 30,
+    };
 
     return (
         <div className="mapMain">
@@ -25,6 +45,22 @@ export default function Map() {
                 mapStyle="mapbox://styles/duygutuncer/cksoguv2cbji417ocfbeb5dmi"
                 onViewportChange={(viewport) => setViewport(viewport)}
             >
+                <GeolocateControl
+                    className="locateControl"
+                    style={geolocateControlStyle}
+                    positionOptions={{ enableHighAccuracy: true }}
+                    trackUserLocation={true}
+                    auto={false}
+                />
+
+                <NavigationControl style={navControlStyle} />
+                <ScaleControl
+                    maxWidth={200}
+                    maxHeight={100}
+                    unit="metric"
+                    style={scaleControlStyle}
+                />
+
                 {trails.features.map((trail) => {
                     // console.log("trail.properties.id", trail.properties.id);
                     return (

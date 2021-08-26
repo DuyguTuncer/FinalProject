@@ -1,6 +1,7 @@
 DROP TABLE IF EXISTS friendships;
 DROP TABLE IF EXISTS messages;
 DROP TABLE IF EXISTS location_likes;
+DROP TABLE IF EXISTS comments;
 DROP TABLE IF EXISTS socialnetwork;
 
   CREATE TABLE socialnetwork(
@@ -40,7 +41,7 @@ CREATE TABLE comments(
     id SERIAL,
     user_id INT NOT NULL REFERENCES socialnetwork(id),
     trail_id INT NOT NULL,
-    commnet VARCHAR NOT NULL,
+    comment VARCHAR NOT NULL,
     timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 

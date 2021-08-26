@@ -15,36 +15,35 @@ export default function TopThree() {
         })();
     }, []);
 
-    console.log("trails vtrails ", trails.features);
+    console.log("trails features ", trails.features);
     return (
         <div className="topThree">
-            <p>Here are the top three trails that liked the most</p>
+            <h4 className="topThreeHeader">Here are the top three trails that liked the most</h4>
             {topThree.map((trail) => {
                 const thisTrailFromTrailData = trails.features.find(
                     (thisTrail) => {
-                        console.log("This trail ", thisTrail);
+                        // console.log("This trail ", thisTrail);
                         // should I reassign it?
                         return thisTrail.properties.id == trail.trail_id;
                     }
                 );
-                console.log("thisTrailFromTrailData ", thisTrailFromTrailData);
+                // console.log("thisTrailFromTrailData ", thisTrailFromTrailData);
                 return (
-                    <div className="topThree" key={trail.trail_id}>
+                    <div className="topThreeChild" key={trail.trail_id}>
                         <p>
-                            <p>
+                            <h3>
                                 Address:{" "}
                                 {thisTrailFromTrailData.properties.description}
-                            </p>
+                            </h3>
                             <p>
-                                Title: {thisTrailFromTrailData.properties.title}{" "}
-                                get {trail.count} likes
+                                Name: {thisTrailFromTrailData.properties.title}{" "}
                             </p>
                             <img
                                 className="trailImg"
                                 src={thisTrailFromTrailData.properties.imageurl}
                                 alt={thisTrailFromTrailData.properties.address}
                             />
-
+                            <p className="likes"> get {trail.count} likes</p>
                             {/* <p>trail {trail.trail_id}</p> */}
                         </p>
                     </div>
