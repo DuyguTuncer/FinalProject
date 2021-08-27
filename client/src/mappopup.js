@@ -5,7 +5,7 @@ import TrailComments from "./trailcomments";
 
 export default function MapPopup({ selectedTrail, setSelectedTrail }) {
     const [count, setCount] = useState(0);
-    const [unlike, setUnlike] = useState(0);
+    const [buttonDisabled, setButtonDisabled] = useState(false);
     const [comment, setComment] = useState("");
 
     useEffect(() => {
@@ -18,14 +18,6 @@ export default function MapPopup({ selectedTrail, setSelectedTrail }) {
             setCount(parseInt(data.count));
         })();
     }, [selectedTrail.properties.id]);
-
-
-    useEffect(() => {
-        console.log(`"${comment}" has been rendered!`);
-        return () => {
-            console.log(`About to replace "${comment}" with something else.`);
-        };
-    });
 
     return (
         <Popup
@@ -46,9 +38,13 @@ export default function MapPopup({ selectedTrail, setSelectedTrail }) {
             />
             <div className="likeContainer">
                 <button
-                    className="likeButton"
+                    className={
+                        !buttonDisabled ? "likeButton" : "likeButtonDisabled"
+                    }
+                    disabled={buttonDisabled}
                     onClick={(e) => {
                         e.preventDefault();
+                        setButtonDisabled(true);
                         axios
                             .post(`/api/map/`, {
                                 trailId: selectedTrail.properties.id,

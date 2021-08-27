@@ -33,9 +33,8 @@ export class Login extends Component {
                 console.log("resp.data.success", resp.data.success);
 
                 if (resp.data.success) {
-                    location.reload();
-                    // console.log(" location.reload();",   location.reload());
-                    console.log("login is successfull");
+                    console.log("login is successful");
+                    location.href = "/map";
                 } else {
                     this.setState({
                         error: true,
@@ -56,7 +55,7 @@ export class Login extends Component {
     render() {
         return (
             <div>
-                <form className="login">
+                <form className="login" autoComplete="off">
                     <div className="loginContainer1">
                         <img
                             className="regsiterImage"

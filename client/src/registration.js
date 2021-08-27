@@ -36,7 +36,8 @@ export class Registration extends Component {
                     // that sth is trigger a reload, so that our start.js runs
                     // one more time and asks the server agin whether or not
                     // the user has the correct cookie :)
-                    location.reload();
+                    // location.reload();
+                    location.href = "/map";
                 } else {
                     // we should render an error!
                     // we need to update our component's state to conditionally
@@ -70,7 +71,7 @@ export class Registration extends Component {
                     ></img>
                 </div>
                 <div className="registration2">
-                    <form>
+                    <form autoComplete="off">
                         <div className="registerContainer">
                             {this.state.error && (
                                 <h2 style={{ color: "white" }}>

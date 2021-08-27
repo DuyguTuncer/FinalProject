@@ -101,6 +101,7 @@ app.post("/register", (req, res) => {
                     );
                     // console.log("req.session: ", req.session);
                     res.json({ success: true });
+                    res.redirect("/map");
                 })
                 .catch((err) =>
                     console.log("Error in post request for register", err)
@@ -118,6 +119,10 @@ app.post("/login", (req, res) => {
     db.findEmail(req.body.emailAddress)
         .then(({ rows }) => {
             console.log("rows:", rows);
+            if (rows.length===0) {
+                res.json({ success: false });
+                return;
+            }
             // rows[0].hashed_password;
             bcrypt
                 .compare(req.body.password, rows[0].hashed_password)
@@ -442,7 +447,7 @@ app.get("/api/topThree", function (req, res) {
 app.post("/api/comment", function (req, res) {
     console.log("req.body in /api/comment", req.body);
     db.insertComment(req.body.trailId, req.session.userId, req.body.comment)
-        .then((result) => {
+        .then(() => {
             db.getComments(req.body.trailId).then((result) => {
                 console.log("result in /api/comment/:trailId", result.rows[0]);
                 res.json(result.rows);

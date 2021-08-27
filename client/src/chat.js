@@ -18,36 +18,39 @@ export default function Chat() {
 
     return (
         <div className="chat">
-            {/* <div className="chatContainer"> */}
-            <h1 className="chatHeader">Let's Chat</h1>
-            <div className="chat-box">
-                {chatMessages &&
-                    chatMessages.map((message) => (
-                        <div className="chatMessage" key={message.id}>
-                            <img
-                                className="messageProfilePic"
-                                src={message.imageurl}
-                                alt=""
-                            />
-                            <div>
-                                <h5>
-                                    <em>
-                                        {message.first} {message.last} said:
-                                    </em>
-                                </h5>
-                                <p>{message.text}</p>
+            <div className="chatLayout">
+                {/* <div className="chatContainer"> */}
+                <h1 className="chatHeader">Let's Chat</h1>
+                <div className="chat-box">
+                    {chatMessages &&
+                        chatMessages.map((message) => (
+                            <div className="chatMessage" key={message.id}>
+                                <img
+                                    className="messageProfilePic"
+                                    src={message.imageurl}
+                                    alt=""
+                                />
+                                <div>
+                                    <h5>
+                                        <em>
+                                            {message.first} {message.last} said:
+                                        </em>
+                                    </h5>
+                                    <p>{message.text}</p>
+                                </div>
                             </div>
-                        </div>
-                    ))}
-            </div>
-            <div className="chatinputContainer">
-                <textarea
-                    name="chat-input"
-                    className="chat-input"
-                    placeholder={"Write your message..."}
-                    onKeyPress={sendMessage}
-                ></textarea>
-                {/* </div> */}
+                        ))}
+                </div>
+
+                <div className="chatinputContainer">
+                    <textarea
+                        name="chat-input"
+                        className="chat-input"
+                        placeholder={"Write your message..."}
+                        onKeyPress={sendMessage}
+                    ></textarea>
+                    {/* </div> */}
+                </div>
             </div>
         </div>
     );

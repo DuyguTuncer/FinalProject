@@ -10,8 +10,7 @@ import thunk from "redux-thunk";
 import { init } from "./socket";
 import { composeWithDevTools } from "redux-devtools-extension";
 
-
-// const store = createStore(reducer, 
+// const store = createStore(reducer,
 //     applyMiddleware(immutableState.default()
 //     ));
 // const element = (
@@ -36,7 +35,7 @@ const store = createStore(
 );
 
 axios.get("/user/id.json").then(function ({ data }) {
-    // console.log("data in Start: ", data);
+    console.log("data in Start: ", data);
     if (!data.userId) {
         ReactDOM.render(<Welcome />, document.querySelector("main"));
     } else {
