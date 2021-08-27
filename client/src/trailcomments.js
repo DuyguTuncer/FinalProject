@@ -16,37 +16,39 @@ export default function TrailComments({ trailId }) {
 
     return (
         <div>
-            <div className="trailComments">
-                <input
-                    type="text"
-                    name="comment"
-                    id="comment"
-                    placeholder="Make a comment"
-                    onChange={(e) => setComment(e.target.value)}
-                />
-            </div>
+            <div className="commentContainer">
+                <div className="trailComments">
+                    <input
+                        type="text"
+                        name="comment"
+                        id="comment"
+                        placeholder="Make a comment"
+                        onChange={(e) => setComment(e.target.value)}
+                    />
+                </div>
 
-            <button
-                className="commentButton"
-                onClick={(e) => {
-                    e.preventDefault();
-                    axios
-                        .post(`/api/comment/`, {
-                            trailId,
-                            comment,
-                        })
-                        .then(({ data }) => {
-                            console.log(" /api/comment", data);
-                            setTextRendered(data);
-                        })
-                        .catch((err) => {
-                            console.log("error in /api/comment", err);
-                        });
-                }}
-            >
-                Send
-            </button>
-            <p>Commnets: {comment}</p>
+                <button
+                    className="commentButton"
+                    onClick={(e) => {
+                        e.preventDefault();
+                        axios
+                            .post(`/api/comment/`, {
+                                trailId,
+                                comment,
+                            })
+                            .then(({ data }) => {
+                                console.log(" /api/comment", data);
+                                setTextRendered(data);
+                            })
+                            .catch((err) => {
+                                console.log("error in /api/comment", err);
+                            });
+                    }}
+                >
+                    Send!
+                </button>
+            </div>
+            <p>Comments: {comment}</p>
             {textRendered.map((each) => (
                 <div className="hey" key={each.trail_id}>
                     <p className="heyyo">{each.comment}</p>

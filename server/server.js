@@ -472,6 +472,7 @@ app.get("api/logout", function (req, res) {
     (req.session.first = null),
     (req.session.last = null);
     res.redirect("/");
+    
 });
 
 app.get("*", function (req, res) {

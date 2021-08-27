@@ -44,30 +44,32 @@ export default function MapPopup({ selectedTrail, setSelectedTrail }) {
                 src={selectedTrail.properties.imageurl}
                 alt={selectedTrail.properties.address}
             />
-            <button
-                className="likeButton"
-                onClick={(e) => {
-                    e.preventDefault();
-                    axios
-                        .post(`/api/map/`, {
-                            trailId: selectedTrail.properties.id,
-                            address: selectedTrail.properties.address,
-                            title: selectedTrail.properties.title,
-                        })
-                        .then(({ data }) => {
-                            console.log(" data api/map/", data);
-                            if (data.success) {
-                                setCount(count + 1);
-                            }
-                        })
-                        .catch((err) => {
-                            console.log("error in /api/map/", err);
-                        });
-                }}
-            >
-                Like!
-            </button>
-            <p>Likes: {count}</p>
+            <div className="likeContainer">
+                <button
+                    className="likeButton"
+                    onClick={(e) => {
+                        e.preventDefault();
+                        axios
+                            .post(`/api/map/`, {
+                                trailId: selectedTrail.properties.id,
+                                address: selectedTrail.properties.address,
+                                title: selectedTrail.properties.title,
+                            })
+                            .then(({ data }) => {
+                                console.log(" data api/map/", data);
+                                if (data.success) {
+                                    setCount(count + 1);
+                                }
+                            })
+                            .catch((err) => {
+                                console.log("error in /api/map/", err);
+                            });
+                    }}
+                >
+                    Like!
+                </button>
+                <p className="countOfLikes">Likes: {count}</p>
+            </div>
             {/* <button
                 style={{ color: "red" }}
                 onClick={(e) => {

@@ -129,7 +129,6 @@ export default class App extends Component {
                                 </Link>
                                 {/* yyyyyyyyyyyyyyyyyyyy */}
                                 <Link
-                                    to={``}
                                     onClick={async (e) => {
                                         e.preventDefault();
                                         const res = await axios.get(

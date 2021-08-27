@@ -23,7 +23,7 @@ export default function Chat() {
             <div className="chat-box">
                 {chatMessages &&
                     chatMessages.map((message) => (
-                        <div className="chat-message" key={message.id}>
+                        <div className="chatMessage" key={message.id}>
                             <img
                                 className="messageProfilePic"
                                 src={message.imageurl}
