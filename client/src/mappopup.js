@@ -68,7 +68,7 @@ export default function MapPopup({ selectedTrail, setSelectedTrail }) {
                 >
                     Like!
                 </button>
-                <p className="countOfLikes">Likes: {count}</p>
+                <em className="countOfLikes">Likes: {count}</em>
             </div>
             {/* <button
                 style={{ color: "red" }}

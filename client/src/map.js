@@ -18,7 +18,7 @@ export default function Map() {
         height: 810,
         latitude: 52.520008,
         longitude: 13.404954,
-        zoom: 11,
+        zoom: 10,
     });
     const [selectedTrail, setSelectedTrail] = useState(null);
 

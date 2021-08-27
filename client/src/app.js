@@ -13,7 +13,6 @@ import Chat from "./chat";
 import Map from "./map";
 import Weather from "./weather";
 
-
 export default class App extends Component {
     constructor() {
         super();
@@ -47,12 +46,12 @@ export default class App extends Component {
                         imageUrl: imageurl,
                         bio: bio,
                     });
-                // } else {
-                //     const res = await axios.get("/api/logout/");
-                //     if (res.status == 200) {
-                //         location.replace("/");
-                //     }
-                // }
+                    // } else {
+                    //     const res = await axios.get("/api/logout/");
+                    //     if (res.status == 200) {
+                    //         location.replace("/");
+                    //     }
+                    // }
                 } else {
                     this.setState({ error: true });
                 }
@@ -129,6 +128,7 @@ export default class App extends Component {
                                 </Link>
                                 {/* yyyyyyyyyyyyyyyyyyyy */}
                                 <Link
+                                    className="logoutLink"
                                     onClick={async (e) => {
                                         e.preventDefault();
                                         const res = await axios.get(

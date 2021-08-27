@@ -43,7 +43,7 @@ export default function TopThree() {
                                 src={thisTrailFromTrailData.properties.imageurl}
                                 alt={thisTrailFromTrailData.properties.address}
                             />
-                            <p className="likes"> get {trail.count} likes</p>
+                            <p className="likes"> liked {trail.count} times </p>
                             {/* <p>trail {trail.trail_id}</p> */}
                         </p>
                     </div>

@@ -14,94 +14,265 @@
                 "title": "Grunewald",
                 "url": "http://www.wmata.com/rider_tools/pids/showpid.cfm?station_id=107",
                 "lines": ["Green"],
-                "address": "1411 Southern Avenue, Temple Hills, MD 20748",
+                "address": "Grunewald 10711",
                 "imageurl": "https://img1.oastatic.com/img2/25093896/2560x1920f/t.jpg"
             }
         },
         {
             "geometry": {
                 "type": "Point",
-                "coordinates": [52.50844935, 13.339369555100077]
+                "coordinates": [52.415499, 13.125844]
             },
             "type": "Feature",
             "properties": {
                 "id": 2,
                 "description": "Deanwood",
                 "marker-symbol": "rail-metro",
-                "title": "Berge",
+                "title": "Zeuthen",
                 "url": "http://www.wmata.com/rider_tools/pids/showpid.cfm?station_id=65",
                 "lines": ["Orange"],
                  "imageurl": "https://live.staticflickr.com/65535/50104084828_4302f70646_b.jpg",
-                "address": "4720 Minnesota Avenue NE, Washington, DC 20019"
+                "address": "Zeuthen"
             }
         },
         {
             "geometry": {
                 "type": "Point",
-                "coordinates": [52.4523745, 13.4492579]
+                "coordinates": [52.37406, 13.429856]
             },
             "type": "Feature",
             "properties": {
                 "id": 3,
                 "description": "College Park",
                 "marker-symbol": "rail-metro",
-                "title": "Mügglesee",
+                "title": "Kleinziethener Berg",
                 "url": "http://www.wmata.com/rider_tools/pids/showpid.cfm?station_id=79",
                 "lines": ["Green"],
                 "imageurl": "https://ep1.pinkbike.org/p4pb20486352/p4pb20486352.jpg",
-                "address": "4931 Calvert Road, College Park, MD 20740"
+                "address": "Kleinziethener Berg"
             }
         },
         {
             "geometry": {
                 "type": "Point",
-                "coordinates": [52.5075033, 13.4103700]
+                "coordinates": [52.6485179, 13.3976844]
             },
             "type": "Feature",
             "properties": {
                 "id": 4,
                 "description": "Greenbelt",
                 "marker-symbol": "rail-metro",
-                "title": "trail 4",
+                "title": "Am Arkenberg",
                 "url": "http://www.wmata.com/rider_tools/pids/showpid.cfm?station_id=80",
                 "lines": ["Green"],
                 "imageurl": "https://i.ytimg.com/vi/cV-gHhnbsic/maxresdefault.jpg",
-                "address": "5717 Greenbelt Metro Drive, Greenbelt, MD 20740"
+                "address": "Am Arkenberg"
             }
         },
         {
             "geometry": {
                 "type": "Point",
-                "coordinates": [52.5071871, 13.390676]
+                "coordinates": [52.409672, 13.360467]
             },
             "type": "Feature",
             "properties": {
                 "id": 5,
                 "description": "West Hyattsville",
                 "marker-symbol": "rail-metro",
-                "title": "Rädlerstrasse",
+                "title": "SchlehenBerg",
                 "url": "http://www.wmata.com/rider_tools/pids/showpid.cfm?station_id=77",
                 "lines": ["Green"],
                 "imageurl": "https://mitvergnuegen.com/wp-content/uploads/2015/10/m_ggelberg1-600x338.jpg",
-                "address": "2700 Hamilton St., Hyattsville, MD 20782"
+                "address": "SchlehenBerg"
             }
         },
         {
             "geometry": {
                 "type": "Point",
-                "coordinates": [52.5371871, 13.390676]
+                "coordinates": [52.620987, 13.258316]
             },
             "type": "Feature",
             "properties": {
                 "id": 6,
                 "description": "West Hyattsville",
                 "marker-symbol": "rail-metro",
-                "title": "Bikestrasse",
+                "title": "Ehrenpfortenberg",
                 "url": "http://www.wmata.com/rider_tools/pids/showpid.cfm?station_id=77",
                 "lines": ["Green"],
                 "imageurl": "https://www.bergwelten.com/files/touren/header/bike-trail-tirol-etappe-19-lanersbach-geiseljoch-weerberg-12359-0.jpg?impolicy=770x520_fc",
-                "address": "2700 Hamilton St., Hyattsville, MD 20782"
+                "address": "Ehrenpfortenberg"
             }
-        }
+        },
+         {
+             "geometry": {
+                 "type": "Point",
+                 "coordinates": [52.61018, 13.486322]
+             },
+             "type": "Feature",
+             "properties": {
+                 "id": 7,
+                 "description": "West Hyattsville",
+                 "marker-symbol": "rail-metro",
+                 "title": "Teufelsberg",
+                 "url": "http://www.wmata.com/rider_tools/pids/showpid.cfm?station_id=77",
+                 "lines": ["Green"],
+                 "imageurl": "https://p.vitalmtb.com/photos/users/36596/photos/110485/s600_IMG_5443.jpg",
+                 "address": "Teufelsseechaussee 10, 14193 Berlin"
+             }
+         },
+         {
+             "geometry": {
+                 "type": "Point",
+                 "coordinates": [52.469606, 13.216166]
+             },
+             "type": "Feature",
+             "properties": {
+                 "id": 8,
+                 "description": "West Hyattsville",
+                 "marker-symbol": "rail-metro",
+                 "title": "Teufelsee",
+                 "url": "http://www.wmata.com/rider_tools/pids/showpid.cfm?station_id=77",
+                 "lines": ["Green"],
+                 "imageurl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzS02_EDKuGIOvlSGIUTTJ7OaSsYcIcfeJEw&usqp=CAU",
+                 "address": "Teufelsseechaussee 10, 14193 Berlin"
+             }
+         },
+          {
+              "geometry": {
+                  "type": "Point",
+                  "coordinates": [52.4602925, 13.1400517]
+              },
+              "type": "Feature",
+              "properties": {
+                  "id": 9,
+                  "description": "West Hyattsville",
+                  "marker-symbol": "rail-metro",
+                  "title": "Kladow",
+                  "url": "http://www.wmata.com/rider_tools/pids/showpid.cfm?station_id=77",
+                  "lines": ["Green"],
+                  "imageurl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJqwL38y5uncqEYji7ZrCMD8cjeKIkDhAnNA&usqp=CAU",
+                  "address": "Kladow"
+              }
+          },
+           {
+               "geometry": {
+                   "type": "Point",
+                   "coordinates": [52.497766850000005, 13.071154211511486]
+               },
+               "type": "Feature",
+               "properties": {
+                   "id": 10,
+                   "description": "West Hyattsville",
+                   "marker-symbol": "rail-metro",
+                   "title": "Döberitzer Heide",
+                   "url": "http://www.wmata.com/rider_tools/pids/showpid.cfm?station_id=77",
+                   "lines": ["Green"],
+                   "imageurl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTW6rnz0tCjA1peQiLA3DcycdNFNlGX1KqIUg&usqp=CAU",
+                   "address": "Döberitzer Heide"
+               }
+           },
+            {
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [52.5076716, 13.5723647]
+                },
+                "type": "Feature",
+                "properties": {
+                    "id": 11,
+                    "description": "West Hyattsville",
+                    "marker-symbol": "rail-metro",
+                    "title": "Biesdorfer Höhe",
+                    "url": "http://www.wmata.com/rider_tools/pids/showpid.cfm?station_id=77",
+                    "lines": ["Green"],
+                    "imageurl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTdIgDfxrPfanTC5578dO-LRZnpaB_E7dutdw&usqp=CAU",
+                    "address": "Biesdorfer Höhe"
+                }
+            },
+             {
+                 "geometry": {
+                     "type": "Point",
+                     "coordinates": [52.5617716, 13.58638628404491]
+                 },
+                 "type": "Feature",
+                 "properties": {
+                     "id": 12,
+                     "description": "Ahrensfelder Berge",
+                     "marker-symbol": "rail-metro",
+                     "title": "Ahrensfelder Berge",
+                     "url": "http://www.wmata.com/rider_tools/pids/showpid.cfm?station_id=77",
+                     "lines": ["Green"],
+                     "imageurl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEpl9ZfGIH5h9R74IerkHq2RpUhwbtMFcWEA&usqp=CAU",
+                     "address": "Ahrensfelder Berge"
+                 }
+             },
+             {
+                 "geometry": {
+                     "type": "Point",
+                     "coordinates": [52.4610745, 13.562066762772146]
+                 },
+                 "type": "Feature",
+                 "properties": {
+                     "id": 13,
+                     "description": "Ahrensfelder Berge",
+                     "marker-symbol": "rail-metro",
+                     "title": "Wuhlheide",
+                     "url": "http://www.wmata.com/rider_tools/pids/showpid.cfm?station_id=77",
+                     "lines": ["Green"],
+                     "imageurl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtcVwpE-98_RGrZhf_N6wo1qq74yB0KoXhfw&usqp=CAU",
+                     "address": "Wuhlheide, wood, Germany"
+                 }
+             },
+             {
+                 "geometry": {
+                     "type": "Point",
+                     "coordinates": [52.4367583, 13.650103313648062]
+                 },
+                 "type": "Feature",
+                 "properties": {
+                     "id": 14,
+                     "description": "Ahrensfelder Berge",
+                     "marker-symbol": "rail-metro",
+                     "title": "Großer Müggelsee",
+                     "url": "http://www.wmata.com/rider_tools/pids/showpid.cfm?station_id=77",
+                     "lines": ["Green"],
+                     "imageurl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQIikB-C72114iNdpZZiJzVglkrIxcP55piKw&usqp=CAU",
+                     "address": "Großer Müggelsee"
+                 }
+             },
+              {
+                  "geometry": {
+                      "type": "Point",
+                      "coordinates": [52.4259804, 13.7542811]
+                  },
+                  "type": "Feature",
+                  "properties": {
+                      "id": 15,
+                      "description": "Erkner",
+                      "marker-symbol": "rail-metro",
+                      "title": "Großer Müggelsee",
+                      "url": "http://www.wmata.com/rider_tools/pids/showpid.cfm?station_id=77",
+                      "lines": ["Green"],
+                      "imageurl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUxzepQpz18btYjEmKjJrLQ1CiWTIvARxKjg&usqp=CAU",
+                      "address": "Erkner"
+                  }
+              },
+               {
+                   "geometry": {
+                       "type": "Point",
+                       "coordinates": [52.3508259, 13.6293881]
+                   },
+                   "type": "Feature",
+                   "properties": {
+                       "id": 16,
+                       "description": "Zeuthen",
+                       "marker-symbol": "rail-metro",
+                       "title": "Großer Müggelsee",
+                       "url": "http://www.wmata.com/rider_tools/pids/showpid.cfm?station_id=77",
+                       "lines": ["Green"],
+                       "imageurl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMzL6g7_YzhNGjCBNUbYsPS4vSfTZmAejyAg&usqp=CAU",
+                       "address": "Zeuthen"
+                   }
+               }
+              
     ]
 }

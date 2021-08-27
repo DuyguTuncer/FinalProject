@@ -22,6 +22,7 @@ export default function TrailComments({ trailId }) {
                         type="text"
                         name="comment"
                         id="comment"
+                        className="commentInput"
                         placeholder="Make a comment"
                         onChange={(e) => setComment(e.target.value)}
                     />
@@ -48,14 +49,19 @@ export default function TrailComments({ trailId }) {
                     Send!
                 </button>
             </div>
-            <p>Comments: {comment}</p>
-            {textRendered.map((each) => (
-                <div className="hey" key={each.trail_id}>
-                    <p className="heyyo">{each.comment}</p>
-                    <p className="heyyo">{each.first}</p>
-                    <p className="heyyo">{each.last}</p>
+            <div className="commentBoxContainer">
+                <div className="commentBox">
+                    <h3>Comments: </h3>
+                    {textRendered.map((each) => (
+                        <div className="commentBoxInner" key={each.trail_id}>
+                            <em className="hey">
+                                {each.first} {each.last}:
+                            </em>
+                            <p className="comment">{each.comment}</p>
+                        </div>
+                    ))}
                 </div>
-            ))}
+            </div>
         </div>
     );
 }

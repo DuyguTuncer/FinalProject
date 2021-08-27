@@ -5,7 +5,7 @@
 }
 
 body {
-    background-color: rgb(212, 212, 238);
+    background-color: rgb(232, 247, 235);
    
 }
 
@@ -64,7 +64,7 @@ body {
  }
 
  .loginContainer1{
-     height:700px;
+     height:600px;
      /* background-image: url("/images/registrationBike.jpg"); */
      object-fit: cover;
      background-position:bottom;
@@ -95,14 +95,15 @@ body {
 }
 
 .registration1 {
-height:600px;
+height:400px;
 background-repeat: no-repeat, repeat;
 object-fit: cover;
 }
 
-/* .registration2{
+.registration2{
     display:block;
-} */
+    width:100%
+}
 
 section{
    display:flex;
@@ -128,7 +129,7 @@ section{
 }
 
 .registerText {
-    padding:10px;
+    padding:3px;
 }
 
 .biggerProfilePic {
@@ -302,7 +303,7 @@ background-color: rgb(41, 41, 85);
 }
 
 /* yyyyyyyyyyyyyyyyyyyyyyyyyy */
-.weatherLink, .chatLink, .map {
+.logoutLink, .weatherLink, .chatLink, .map {
 color:white;
     margin:20px;
     font-size: 22px;
@@ -578,6 +579,50 @@ textarea {
     margin-top:10px;
     margin-right:10px;
 }
+
+.commentBoxContainer{
+     height: 200px;
+   margin: 0em;
+   margin-left:10px;
+   
+}
+
+.commentBox{
+   height: 100%;
+   margin: 0em;
+   overflow-y: auto;
+   
+}
+
+/* .commentBoxInner {
+   height: 100%;
+   margin: 0em;
+   overflow-y: auto;
+} */
+
+.hey {
+    font-size:10px;
+
+}
+
+
+.trailComments{
+    margin-left:10px;
+}
+
+.comment{
+    border-radius: 10px;
+    padding:10px;
+    background-color: rgba(231, 243, 230, 0.5);
+    box-shadow: 1px 1px rgba(0, 0, 0, 0.2);
+}
+
+.commentBox h3{
+  font-weight: 900;
+    /* text-shadow: 1px 1px rgba(50, 50, 50, 0.5); */
+}
+
+
 
 
 

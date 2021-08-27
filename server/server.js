@@ -467,10 +467,11 @@ app.get("/api/comment/:trailId", function (req, res) {
         });
 });
 
-app.get("api/logout", function (req, res) {
-    (req.session.userId = null),
-    (req.session.first = null),
-    (req.session.last = null);
+app.get("/api/logout", function (req, res) {
+    console.log("I am in api/logout");
+    req.session.userId = null;
+    req.session.first = null;
+    req.session.last = null;
     res.redirect("/");
     
 });
