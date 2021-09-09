@@ -22,6 +22,7 @@ export default function TrailComments({ trailId }) {
                         type="text"
                         name="comment"
                         id="comment"
+                        autoComplete="off"
                         className="commentInput"
                         placeholder="Make a comment"
                         onChange={(e) => setComment(e.target.value)}

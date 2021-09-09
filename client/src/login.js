@@ -13,7 +13,6 @@ export class Login extends Component {
     handleChange({ target }) {
         console.log("which input is running handleChange?", target.name);
         console.log("value the user typed:", target.value);
-        // updating state!
         this.setState(
             {
                 [target.name]: target.value,
@@ -87,17 +86,6 @@ export class Login extends Component {
                         >
                             Log in
                         </button>
-                        {/* <div> */}
-                        {/* <p className="registerText">
-                                Did you forget your password?
-                            </p>
-                            <p className="registerText"> */}
-                        {/* Reset password{" "} */}
-                        {/* <Link to="/password-reset">
-                                    Reset your password here!
-                                </Link> */}
-                        {/* </p>
-                        </div> */}
                     </div>
                 </form>
             </div>

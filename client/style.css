@@ -5,8 +5,7 @@
 }
 
 body {
-    background-color: rgb(232, 247, 235);
-   
+    background-color: rgb(232, 247, 235); 
 }
 
 .mainHeaderContainer {
@@ -15,13 +14,13 @@ body {
 
 .header {
     display: flex;
-  background-color: rgb(41, 85, 75);
+    background-color: rgb(41, 85, 75);
     width:100%;
     
 }
 .header2 {
     display: flex;
- background-color: rgb(41, 85, 75);
+    background-color: rgb(41, 85, 75);
 }
 
 .profilePic {
@@ -38,12 +37,11 @@ body {
     object-fit: cover;
 }
  .errorMessage {
-     font-size: 10px;
+    font-size: 10px;
  }
 
-
  form {
-     display:flex;
+    display:flex;
  }
 
  .loginContainer2, .registerContainer {
@@ -59,15 +57,13 @@ body {
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-weight:300;
     align-items: center;
-    /* background-image: url("/images/registrationBike.jpg"); */
   
  }
 
  .loginContainer1{
-     height:600px;
-     /* background-image: url("/images/registrationBike.jpg"); */
-     object-fit: cover;
-     background-position:bottom;
+    height:600px;
+    object-fit: cover;
+    background-position:bottom;
  }
 
  input {
@@ -86,18 +82,12 @@ body {
 .login {
     position:flex;
     flex-direction:column;
-    /* position: absolute;
-    top: 40%;
-    left: 50%;
-    width:100%;
-    transform: translate(-50%, -50%);
-    background-image: url("https://dynaimage.cdn.cnn.com/cnn/c_fill,g_auto,w_1200,h_675,ar_16:9/https%3A%2F%2Fcdn.cnn.com%2Fcnnnext%2Fdam%2Fassets%2F210421112606-20210421-socializing-office-gfx.jpg"); */
 }
 
 .registration1 {
-height:400px;
-background-repeat: no-repeat, repeat;
-object-fit: cover;
+    height:400px;
+    background-repeat: no-repeat, repeat;
+    object-fit: cover;
 }
 
 .registration2{
@@ -108,11 +98,6 @@ object-fit: cover;
 section{
    display:flex;
    flex-direction: column;
-     /* position: absolute;
-    top: 20%;
-    left: 50%;
-    width:100%;
-    transform: translate(-50%, -50%); */
 }
 
 .regsiterImage {
@@ -130,36 +115,6 @@ section{
 
 .registerText {
     padding:3px;
-}
-
-.biggerProfilePic {
-    width: 300px;
-    height:300px;
-    object-fit: cover;
-    margin:20px;
-    margin-left:100px;
-}
-
-.profileContainer {
-    display:flex;
-    /* background-color: purple; */
-}
-
-.hello {
-    font-size: 50px;
-}
-
-.generalContainer {
-    display:flex;
-}
-
-.saveButton, .updateBioButton {
-   background-color: rgb(41, 85, 75);
-    color: white;
-    font-size: 20px;
-    margin-top: 20px;
-    cursor: pointer;
-    /* margin:20px; */
 }
 
 .layout {
@@ -184,125 +139,10 @@ section{
     font-size: 30px;
 }
 
-
-.bioText {
-    font-size: 25px;
-    padding-top:40px;
-    /* padding-left: 20px; */
-}
-
-.helloText {
-    font-size: 20px;
-    padding-top:40px;
-    margin-left:100px;
-    
-}
-
-.bioBox {
-    background-color: rgb(250, 244, 244);
-    /* padding-right:50px; */
-    margin:40px;
-    padding-right:300px;
-    border-radius:20px;
-}
-
-.findPeopleImg {
-    width: 200px;
-    height:200px;
-    object-fit: cover;
-}
-
-/* .findPeopleContainer {
-    margin-left: 50px;
-    margin-top:50px;
-} */
-
-.findPeopleUsers {
-    padding-bottom:30px;
-}
-
-.othersProfilePic {
-    /* margin:20px; */
-    margin-left:40px;
-    width: 200px;
-    height:200px;
-    object-fit: cover;
-}
-
-.othersProfile {
-    display:flex;
-  
-}
-
-.othersProfileFeatures {
- margin-left:30px;
-}
-
-/* .othersH2 {
-} */
-
-.othersP {
-    margin-bottom:30px;
-}
-
-.friendButton {
-    background-color: rgb(41, 85, 75);
-    color: white;
-    font-size: 20px;
-    margin-top: 20px;
-    cursor: pointer;
-}
-
 .links {
   margin:20px;
 }
 
-.findPeopleLink, .friendsLink {
-    color:white;
-    margin:20px;
-    font-size: 22px;
-}
-
-.friendsPic{
-     width: 200px;
-    height:200px;
-    object-fit: cover;
-}
-
-.wannabeeContainer {
-     margin-left: 50px;
-    margin-top:50px;
-}
-
-.wannabeeText{
-   padding-bottom:30px;
-}
-
-.friendsButton {
-background-color: rgb(41, 41, 85);
-    color: white;
-    font-size: 15px;
-    margin-bottom: 20px;
-    cursor: pointer;
-   
-}
-
-.cont {
-    display:flex;
-    justify-content: center;
-}
-
-.friendsContainer {
-    margin-left: 50px;
-    margin-top:50px;
-}
-
-.acceptedFriendsText {
-    margin-top:50px;
-    margin-bottom:30px;
-}
-
-/* yyyyyyyyyyyyyyyyyyyyyyyyyy */
 .logoutLink, .weatherLink, .chatLink, .map {
 color:white;
     margin:20px;
@@ -313,7 +153,6 @@ color:white;
 .mapContainer {
     display:flex;
     justify-content: center;
-   
 }
 
 .map-container {
@@ -420,21 +259,18 @@ color:white;
 .chatHeader{
     justify-content:center;
     text-align:center;
-    /* margin-top:20px; */
     color:white;
-     font-size:50px;
+    font-size:50px;
     font-weight: 900;
     text-shadow: 2px 2px rgba(50, 50, 50, 0.5);
 }
 
 .chat{
     
-      background-image: url("/images/FlyingBike.jpeg");
-      background-blend-mode: rgba(50, 50, 50, 0.5) ;
-      background-size:cover;
-    /* background-position:bottom; */
+    background-image: url("/images/FlyingBike.jpeg");
+    background-blend-mode: rgba(50, 50, 50, 0.5) ;
+    background-size:cover;
     height: 820px;
-     /* background-color: rgba(248, 241, 241, 0.5); */
      
 
       
@@ -442,7 +278,6 @@ color:white;
 .chatLayout{
   background-color: rgba(90, 85, 85, 0.5);
   height: 820px;
-   /* background-image: linear-gradient(to bottom, rgba(0,0,0, 0.2), rgba(0,0,0,0.75)); */
 }
 
 .chat-box {
@@ -453,15 +288,13 @@ color:white;
     padding: 1em;
     display: flex;
     flex-direction: column-reverse;
-    /* background-color: rgb(215, 221, 214); */
     background-color: rgba(255, 255, 255, 0.5);
-     box-shadow: 3px 6px rgba(0, 0, 0, 0.2);
+    box-shadow: 3px 6px rgba(0, 0, 0, 0.2);
    
 }
 
 .chatMessage {
     display: flex;
-    /* align-items: center; */
     margin-bottom: 7px;
 }
 
@@ -500,7 +333,7 @@ textarea {
 }
 
 .trailImg {
-     width: 380px;
+    width: 380px;
     height:100px;
     object-fit: cover;
     border-radius: 8px;
@@ -531,7 +364,6 @@ textarea {
 .topThreeHeader {
     justify-content:center;
     text-align:center;
-   /* color:blck */
     font-size:21px;
     font-weight: 900;
     text-shadow: 1px 1px rgba(50, 50, 50, 0.5);
@@ -567,7 +399,7 @@ textarea {
 }
 
 .likeButtonDisabled{
-   background-color: rgb(199, 230, 222);
+    background-color: rgb(199, 230, 222);
     color: white;
     font-size: 20px;
     margin-top: 10px;
@@ -593,9 +425,6 @@ textarea {
     background-color: rgb(41, 85, 75);
     color: white;
     font-size: 20px;
-    /* margin-top: 10px;
-    margin-bottom:10px;
-    margin-right:10px; */
     cursor: pointer;
     height:30px;
     margin: 10px 10px 10px 0px;
@@ -611,7 +440,7 @@ textarea {
 }
 
 .commentBoxContainer{
-     height: 200px;
+   height: 200px;
    margin: 0em;
    margin-left:10px;
    
@@ -621,20 +450,11 @@ textarea {
    height: 100%;
    margin: 0em;
    overflow-y: auto;
-   
 }
-
-/* .commentBoxInner {
-   height: 100%;
-   margin: 0em;
-   overflow-y: auto;
-} */
 
 .hey {
     font-size:10px;
-
 }
-
 
 .trailComments{
     margin-left:10px;
@@ -648,8 +468,7 @@ textarea {
 }
 
 .commentBox h3{
-  font-weight: 900;
-    /* text-shadow: 1px 1px rgba(50, 50, 50, 0.5); */
+    font-weight: 900;
 }
 
 
