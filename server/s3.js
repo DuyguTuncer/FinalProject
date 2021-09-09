@@ -3,9 +3,9 @@ const fs = require("fs");
 
 let secrets;
 if (process.env.NODE_ENV == "production") {
-    secrets = process.env; // in prod the secrets are environment variables
+    secrets = process.env; 
 } else {
-    secrets = require("../secrets"); // in dev they are in secrets.json which is listed in .gitignore
+    secrets = require("../secrets"); 
 }
 // console.log("secrets", secrets.AWS_KEY, secrets.AWS_SECRET);
 
@@ -14,15 +14,13 @@ const s3 = new aws.S3({
     secretAccessKey: secrets.AWS_SECRET,
 });
 
-// console.log("s3 ", s3);
+
 
 exports.upload = (req, res, next) => {
     if (!req.file) {
         return res.sendStatus(500);
     }
-    // console.log("req.file in upload function S3");
-
-    // there should be file/img upload if we come here
+ 
     const { filename, mimetype, size, path } = req.file;
     console.log(
         "filename, mimetype, size, path",
@@ -41,18 +39,14 @@ exports.upload = (req, res, next) => {
             ContentType: mimetype,
             ContentLength: size,
         })
-        .promise(); // AWS method, to convert this function a promise
+        .promise();
 
     promise
         .then(() => {
-            // it worked!!!, this will run when we upload our imaoges succesfully to AWS
             console.log("this is from s3.js -> amazon upload complete");
-            // optional
-            // fs.unlink(path, () => {});
             next();
         })
         .catch((err) => {
-            // uh oh
             console.log("err in s3 upload put object: ", err);
             res.sendStatus(404);
         });
