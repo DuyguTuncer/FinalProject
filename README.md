@@ -1,6 +1,6 @@
 ## Mountainbike Trail Finder
 
-Although I am a newbee when it comes to mountain biking, it becomes one of my greatest pleasure in no time. For that reason, as my graduation project of Spiced Academy, I decided to built a website that helps others to find the location of the different mountain biking trails on a map, in Berlin.
+Although I am a newbee when it comes to mountain biking, it becomes one of my greatest passions in no time. For that reason, as my graduation project of Spiced Academy, I decided to built a website that helps others to find the location of the different mountain biking trails on a map, in Berlin.
 
 After users are logged in, they can find the different trails on a map, give the trails a like, and leave a comment about their experiences on that trail.
 
