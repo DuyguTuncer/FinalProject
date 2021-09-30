@@ -8,7 +8,7 @@ https://user-images.githubusercontent.com/83556443/135253730-17f2b115-184c-4a9a-
 
 According to number of the likes a trail received, most rated top three trails are going to be determined for users review.
 
-Users can also check the wather condition to see that if it is a great day for a ride. OpenWeatherMap's API is used for that purpose.
+Users can also check the weather condition to see that if it is a great day for a ride. OpenWeatherMap's API is used for that purpose.
 
 Last but not least, users can communicate with each other and invite other users for a ride with the chat function that is built with React/Socket.IO.
 
