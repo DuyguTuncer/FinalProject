@@ -14,7 +14,7 @@ Last but not least, users can communicate with each other and invite other users
 
 ## Technologies
 
-* React
+* React (with Hooks)
 * Redux
 * Redux DevTools
 * socket.io
