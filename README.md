@@ -10,7 +10,7 @@ According to number of the likes a trail received, most rated top three trails a
 
 Users can also check the weather condition to see that if it is a great day for a ride. OpenWeatherMap's API is used for that purpose.
 
-Last but not least, users can communicate with each other and invite other users for a ride with the chat function that is built with React/Socket.IO.
+Last but not least, users can communicate with each other and invite other users for a ride with the chat function that is built with Socket.IO.
 
 ## Technologies
 
